@@ -8,7 +8,7 @@ I'm following along with a [YouTube playlist](https://www.youtube.com/playlist?l
 
 ## Repository Structure
 
-- **Problem Files:** Each problem is contained in a single `.cpp` file, with the filename typically indicating the problem.
+- **Problem Folders:** Each folder contains various DSA topics with `.cpp` file, with the filename typically indicating the problem.
 - **Language:** All solutions are implemented in C++.
 
 ## Example Code
@@ -40,6 +40,15 @@ g++ filename.cpp -o output
 ```
 
 Replace `filename.cpp` with the actual file name and `output` with your desired output executable name.
+
+
+## 📌 Features
+
+- **Structured Codebase**: All programs are neatly categorized into folders.
+- **Basic to Advanced Concepts**: Covers functions, arrays, number systems, vectors, and more.
+- **Efficient Implementations**: Uses optimized algorithms and best coding practices.
+
+
 
 ## Notes
 
