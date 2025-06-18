@@ -1,16 +1,19 @@
 # DSA Practice Problems in C++
 
-This repository contains my personal solutions to various Data Structures and Algorithms (DSA) problems. Each file includes only the solution code without detailed problem descriptions, serving as a reference for my practice and learning.
+This repository contains my solutions to Data Structures and Algorithms (DSA) practice problems, implemented in C++. It serves as a record of my learning journey to master DSA concepts, from basic patterns to advanced algorithms, for personal growth and interview preparation.
 
 ## Overview
 
-I'm following along with a [YouTube playlist](https://www.youtube.com/playlist?list=PLfqMhTWNBTe137I_EPQd34TsgV6IO55pt) that guides through multiple DSA problems. This repository reflects the practices and learnings from that series.
+This repository reflects my ongoing practice of solving DSA problems to improve problem-solving skills and deepen my understanding of C++. It includes solutions to problems like pattern printing, arrays, sorting, searching, and more, with a focus on clean, efficient, and optimized code.
 
 ## Repository Structure
 
-- **Problem Folders:** Each folder contains various DSA topics with `.cpp` file, with the filename typically indicating the problem.
-- **Language:** All solutions are implemented in C++.
-
+- **Folders**: Organized by DSA topics:
+  - `Patterns`: Problems involving nested loops for printing patterns (e.g., triangles, diamonds).
+  - `Arrays`: Solutions for array manipulation, searching, and sorting.
+  - `Others`: Additional topics like linked lists, stacks, and trees (to be added as I progress).
+- **Files**: Each `.cpp` file is named after the problem or concept (e.g., `triangle_pattern.cpp`).
+- **Language**: All solutions are written in C++.
 ## Example Code
 
 Below is an example demonstrating nested loops in C++:
