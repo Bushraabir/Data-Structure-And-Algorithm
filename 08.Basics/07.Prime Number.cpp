@@ -17,7 +17,7 @@ bool isPrime(int n) {
         if (n % i == 0) return false; // If n is divisible by i, it's not prime
     }
     
-    return true; // If no factors found, n is prime
+    return true; 
 }
 
 int main() {
