@@ -19,3 +19,18 @@ bool isPrime(int n) {
     
     return true; // If no factors found, n is prime
 }
+
+int main() {
+    int n;
+    cout << "Enter an integer: ";
+    cin >> n;
+
+    bool result = isPrime(n);
+    if (result) {
+        cout << n << " is a prime number." << endl;
+    } else {
+        cout << n << " is not a prime number." << endl;
+    }
+
+    return 0;
+}
