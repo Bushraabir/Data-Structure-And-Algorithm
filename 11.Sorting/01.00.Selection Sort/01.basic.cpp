@@ -1,9 +1,4 @@
 /*  
-File: insertion_sort_demo.cpp  
-Topic: Insertion Sort in C++  
-This program demonstrates the insertion sort algorithm step by step.
-It gradually builds a sorted portion of the array by inserting each element
-into its correct position in the sorted part.
 
 Time Complexity:
     - Best Case (Already Sorted): O(N)

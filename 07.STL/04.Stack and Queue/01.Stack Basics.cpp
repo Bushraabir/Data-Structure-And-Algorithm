@@ -1,10 +1,4 @@
-#include <iostream> 
-#include <stack>    // For using stack container
-
-using namespace std;
-
 /*
-    What is a Stack?
 
     A stack is a **container adapter** in C++ STL that follows the **LIFO (Last In First Out)** principle.
     - This means the last element inserted is the first one to be removed.
@@ -19,6 +13,13 @@ using namespace std;
 
 // Helper function to show current state of the stack
 // Note: Stack cannot be directly iterated without modifying it
+
+#include <iostream> 
+#include <stack>    // For using stack container
+
+using namespace std;
+
+
 void showStackInfo(const string& message, const stack<int>& s) {
     cout << message << endl;
     if (!s.empty()) {
