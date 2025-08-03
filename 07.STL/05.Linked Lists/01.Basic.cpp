@@ -31,17 +31,21 @@ using namespace std;
 // Definition of a Node in the Linked List 
 struct Node { //Node is the self defined data type
 
-    public:
     int data;       // Value stored in this node
     Node* next;     // Pointer to the next node
 
     // Constructor to initialize a node
-    public:
+  
     Node(int data1, Node* next1) {
         data = data1;
         next = next1;
     }
 };
+
+/*
+    Both Struct and class are data user definer dqta types in C++.
+    The main difference is that members of a struct are public by default, while members of a class are private by default.
+*/
 
 /*
     node.next is a pointer to the next node in the linked list.
