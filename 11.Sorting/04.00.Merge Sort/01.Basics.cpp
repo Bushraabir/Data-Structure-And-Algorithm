@@ -1,11 +1,12 @@
 /*  
-Merge Sort is a classic divide-and-conquer algorithm. It recursively divides the array into two halves,
-sorts each half, and then merges them back together in sorted order.
+Merge Sort is a classic divide-and-conquer sorting algorithm.
+It divides the array into two halves, recursively sorts each half, and then merges the two sorted halves to produce the sorted array.
 
 Working Principle:
-- Divide the array into two halves.
-- Recursively sort each half.
-- Merge the sorted halves into a single sorted array.
+- Divide the array into two halves until each sub-array contains a single element.
+- Recursively sort the two halves.
+- Merge the two sorted halves into a single sorted array.
+- Repeat the process until the whole array is sorted.
 
 Time Complexity:
     - Best Case: O(N log N)
@@ -13,53 +14,66 @@ Time Complexity:
     - Worst Case: O(N log N)
 
 Space Complexity:
-    - O(N) (Uses extra space for merging)
+    - O(N) (Requires extra space for merging)
 
-Stable Sort: Yes
-Adaptive: No
+Stable Sort: Yes (Because merging maintains the relative order of equal elements)
+Adaptive: No (Does not take advantage of existing order in the input)
 */
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-// Merge two sorted subarrays into one sorted array
+// Merge function to merge two sorted subarrays
 void merge(vector<int>& arr, int left, int mid, int right) {
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
-    vector<int> L(n1), R(n2);
+    vector<int> L(n1);
+    vector<int> R(n2);
 
-    for (int i = 0; i < n1; i++)
+    // Copy data to temporary arrays L[] and R[]
+    for (int i = 0; i < n1; i++) 
         L[i] = arr[left + i];
-    for (int j = 0; j < n2; j++)
+    for (int j = 0; j < n2; j++) 
         R[j] = arr[mid + 1 + j];
 
     int i = 0, j = 0, k = left;
 
+    // Merge the temp arrays back into arr[left..right]
     while (i < n1 && j < n2) {
         if (L[i] <= R[j]) {
-            arr[k++] = L[i++];
-        } else {
-            arr[k++] = R[j++];
+            arr[k] = L[i];
+            i++;
         }
+        else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
     }
 
+    // Copy the remaining elements of L[], if any
     while (i < n1) {
-        arr[k++] = L[i++];
+        arr[k] = L[i];
+        i++;
+        k++;
     }
 
+    // Copy the remaining elements of R[], if any
     while (j < n2) {
-        arr[k++] = R[j++];
+        arr[k] = R[j];
+        j++;
+        k++;
     }
 }
 
-// Merge Sort Function
+// Merge Sort function
 void mergeSort(vector<int>& arr, int left, int right) {
     if (left < right) {
         int mid = left + (right - left) / 2;
 
-        // Recursively sort the two halves
+        // Sort first and second halves
         mergeSort(arr, left, mid);
         mergeSort(arr, mid + 1, right);
 
@@ -69,7 +83,7 @@ void mergeSort(vector<int>& arr, int left, int right) {
 }
 
 int main() {
-    vector<int> arr = {38, 27, 43, 3, 9, 82, 10};
+    vector<int> arr = {9, 5, 1, 4, 3};
 
     cout << "Original array:\n";
     for (int val : arr) {

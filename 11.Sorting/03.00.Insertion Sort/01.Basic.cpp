@@ -1,23 +1,24 @@
 /*  
-Insertion Sort is a simple sorting algorithm that builds the final sorted array one item at a time.
-It is much like sorting playing cards in your hands: you pick one card at a time and insert it into its correct position.
+Insertion Sort is a simple comparison-based sorting algorithm.
+It builds the sorted array one element at a time by repeatedly taking the next element from the unsorted part and inserting it into the correct position in the sorted part.
 
 Working Principle:
-- Start from the second element.
-- Compare the current element (key) with the elements before it.
-- Move elements one position ahead if they are greater than the key.
-- Insert the key at its correct position.
+- Start from the second element (index 1).
+- Compare the current element with the elements before it.
+- Shift all elements that are greater than the current element one position to the right.
+- Insert the current element into its correct position.
+- Repeat the process for all elements.
 
 Time Complexity:
-    - Best Case (Already Sorted): O(N)
+    - Best Case: O(N) (When the array is already sorted)
     - Average Case: O(N^2)
-    - Worst Case (Reversely Sorted): O(N^2)
+    - Worst Case: O(N^2)
 
 Space Complexity:
     - O(1) (In-place sorting)
 
-Stable Sort: Yes
-Adaptive: Yes
+Stable Sort: Yes (Because equal elements do not change their relative order)
+Adaptive: Yes (Faster when the array is already mostly sorted)
 */
 
 #include <iostream>
@@ -38,7 +39,7 @@ void insertionSort(vector<int>& arr) {
             arr[j + 1] = arr[j];
             j--;
         }
-        arr[j + 1] = key;
+        arr[j + 1] = key; // Insert key at correct position
     }
 }
 

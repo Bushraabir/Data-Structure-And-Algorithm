@@ -1,34 +1,34 @@
-/*   
-Quick Sort is a highly efficient sorting algorithm based on the divide-and-conquer principle.  
-It picks an element as pivot and partitions the array around the pivot, such that elements smaller  
-than the pivot come before it and elements greater come after it. This process is recursively applied  
-to the subarrays formed by partitioning.
+/*  
+Quick Sort is a popular divide-and-conquer sorting algorithm.
+It selects a "pivot" element and partitions the array such that elements less than the pivot are on the left, and elements greater than the pivot are on the right.
+Then, it recursively applies the same logic to the subarrays on the left and right of the pivot.
 
 Working Principle:
-- Choose a pivot element (commonly the last element).
-- Partition the array so that elements less than pivot are on the left, greater on the right.
-- Recursively apply quick sort to left and right subarrays.
+- Choose a pivot element from the array (commonly the last element).
+- Rearrange the array by placing all elements smaller than the pivot to its left and all greater elements to its right (partitioning).
+- Recursively apply the above steps to the left and right subarrays.
+- Repeat until the entire array is sorted.
 
 Time Complexity:
-    - Best Case: O(N log N)
+    - Best Case: O(N log N) (Balanced partitions)
     - Average Case: O(N log N)
-    - Worst Case (already sorted or all equal): O(N^2)
+    - Worst Case: O(N^2) (Occurs when pivot choices are poor, e.g., already sorted array with last element as pivot)
 
 Space Complexity:
-    - O(log N) due to recursion stack (in-place partitioning)
+    - O(log N) (Due to recursion stack in average case)
 
-Stable Sort: No  
-Adaptive: No  
+Stable Sort: No (Because swapping may change the relative order of equal elements)
+Adaptive: No (Does not take advantage of existing order in the input)
 */
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-// Partition function using Lomuto partition scheme
+// Partition function to place pivot at correct position
 int partition(vector<int>& arr, int low, int high) {
-    int pivot = arr[high];  // pivot element
-    int i = low - 1;        // index of smaller element
+    int pivot = arr[high];  // Choose the last element as pivot
+    int i = low - 1;        // Index of smaller element
 
     for (int j = low; j < high; j++) {
         if (arr[j] < pivot) {
@@ -36,15 +36,15 @@ int partition(vector<int>& arr, int low, int high) {
             swap(arr[i], arr[j]);
         }
     }
-
-    swap(arr[i + 1], arr[high]);  // place pivot at correct position
-    return i + 1;
+    // Place pivot after the last smaller element
+    swap(arr[i + 1], arr[high]);
+    return i + 1;  // Return pivot position
 }
 
 // Quick Sort function
 void quickSort(vector<int>& arr, int low, int high) {
     if (low < high) {
-        // Partition the array and get pivot index
+        // Partition the array
         int pi = partition(arr, low, high);
 
         // Recursively sort elements before and after partition
@@ -54,7 +54,7 @@ void quickSort(vector<int>& arr, int low, int high) {
 }
 
 int main() {
-    vector<int> arr = {10, 7, 8, 9, 1, 5};
+    vector<int> arr = {9, 5, 1, 4, 3};
 
     cout << "Original array:\n";
     for (int val : arr) {
