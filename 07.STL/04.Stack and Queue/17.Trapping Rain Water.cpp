@@ -1,5 +1,3 @@
-// Filename: TrappingRainwater.cpp
-
 /*
  * Problem Statement: Trapping Rainwater
  *
