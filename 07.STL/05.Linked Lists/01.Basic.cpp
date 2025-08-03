@@ -47,6 +47,14 @@ struct Node { //Node is the self defined data type
     The main difference is that members of a struct are public by default, while members of a class are private by default.
 */
 
+
+/*
+    node is an actual object of type Node, while Node* nodePtr is a pointer to an object of type Node.
+    - node.next is accessing the next pointer of the node object.
+    - nodePtr->next is accessing the next pointer of the Node object that nodePtr points to.
+    - The arrow operator (->) is used to access members of a class or struct through a pointer.
+    - The dot operator (.) is used to access members of a class or struct through an
+*/
 /*
     node.next is a pointer to the next node in the linked list.
     nodePtr->next is a pointer to an object of type Node, which is the next node in the linked list.
