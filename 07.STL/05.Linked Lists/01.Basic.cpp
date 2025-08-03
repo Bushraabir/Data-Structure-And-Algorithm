@@ -23,37 +23,45 @@
 
     - the first element is called head of the linked list and the last element is called tail of the liked list.
     - The last node's next pointer is set to `nullptr` to indicate the end of the list.
-
-
-
 */
 
 #include <iostream>
 using namespace std;
 
 // Definition of a Node in the Linked List 
-struct Node {
+struct Node { //Node is the self defined data type
+
+    public:
     int data;       // Value stored in this node
     Node* next;     // Pointer to the next node
 
     // Constructor to initialize a node
-    Node(int val) {
-        data = val;
-        next = nullptr;
+    public:
+    Node(int data1, Node* next1) {
+        data = data1;
+        next = next1;
     }
 };
+
+/*
+    node.next is a pointer to the next node in the linked list.
+    nodePtr->next is a pointer to an object of type Node, which is the next node in the linked list.
+
+    . is used for normal objects, while -> is used for pointers to objects.
+    In this case, nodePtr is a pointer to a Node object, so we use ->
+*/
 
 // Convert an array to a linked list
 Node* convertArrayToLinkedList(int arr[], int n) {
     if (n == 0) return nullptr;
 
     // First element becomes the head of the list
-    Node* head = new Node(arr[0]);
+    Node* head = new Node(arr[0], nullptr);
     Node* mover = head; // Used to add more nodes (like a tail pointer)
 
     // Loop through remaining elements
     for (int i = 1; i < n; i++) {
-        Node* temp = new Node(arr[i]);  // Create a new node
+        Node* temp = new Node(arr[i], nullptr);  // Create a new node
         mover->next = temp;             // Link current node to new node
         mover = temp;                   // Move the tail forward
     }
@@ -124,3 +132,7 @@ int main() {
 
     return 0;
 }
+
+
+// Note: Remember to free the allocated memory for nodes in a real application to avoid memory leaks.
+// This can be done by implementing a function to delete the linked list nodes after use.
