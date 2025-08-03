@@ -81,45 +81,6 @@ Node* convertArrayToLinkedList(int arr[], int n) {
     return head;  // Return the starting node of the list
 }
 
-// Traverse the list and print each node’s value
-void traverseLinkedList(Node* head) {
-    cout << "Traversing Linked List: ";
-    Node* temp = head;
-
-    while (temp != nullptr) {
-        cout << temp->data << " -> ";
-        temp = temp->next;
-    }
-
-    cout << "NULL\n";  // Marks the end of the list
-}
-
-// Count the number of nodes in the linked list
-int getLength(Node* head) {
-    int count = 0;
-    Node* temp = head;
-
-    while (temp != nullptr) {
-        count++;
-        temp = temp->next;
-    }
-
-    return count;
-}
-
-// Search for a value in the linked list
-bool searchElement(Node* head, int target) {
-    Node* temp = head;
-
-    while (temp != nullptr) {
-        if (temp->data == target) {
-            return true;  // Found the target
-        }
-        temp = temp->next;
-    }
-
-    return false;  // Target not found
-}
 
 int main() {
     int arr[] = {10, 20, 30, 40, 50};
@@ -128,19 +89,6 @@ int main() {
     // Convert array to linked list
     Node* head = convertArrayToLinkedList(arr, n);
     cout << "Linked List created from array.\n";
-
-    // Traverse and display the list
-    traverseLinkedList(head);
-
-    // Print the length of the list
-    cout << "Length of Linked List: " << getLength(head) << endl;
-
-    // Search for a few elements
-    int searchVal = 30;
-    cout << "Is " << searchVal << " in the list? " << (searchElement(head, searchVal) ? "Yes" : "No") << endl;
-
-    searchVal = 100;
-    cout << "Is " << searchVal << " in the list? " << (searchElement(head, searchVal) ? "Yes" : "No") << endl;
 
     return 0;
 }
