@@ -1,4 +1,8 @@
 /*  
+
+( divide & Merge )
+
+
 Merge Sort is a classic divide-and-conquer sorting algorithm.
 It divides the array into two halves, recursively sorts each half, and then merges the two sorted halves to produce the sorted array.
 
