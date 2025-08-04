@@ -106,7 +106,7 @@ void bubbleSort(vector<int>& arr) {
         swapped = false;
 
         // Last i elements are already sorted
-        for (int j = 0; j < n - 1 - i; j++) {
+        for (int j = 0; j < n - 1 - i; j++) { // n-1-i as the array is being sorted from right to left
             if (arr[j] > arr[j + 1]) {
                 swap(arr[j], arr[j + 1]);
                 swapped = true;

@@ -117,7 +117,7 @@ void selectionSort(vector<int>& arr) {
         }
 
         // Swap the found minimum element with the first element of the unsorted part
-        swap(arr[i], arr[minIndex]);
+        swap(arr[i], arr[minIndex]); // Swap function is used outside the loop just to make it more efficient 
     }
 }
 
