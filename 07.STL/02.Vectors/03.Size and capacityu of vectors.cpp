@@ -1,9 +1,9 @@
-// Note:
 // Vectors in C++ maintain two important properties:
 // - size(): The number of elements currently stored in the vector.
 // - capacity(): The total amount of space allocated for the vector, which can be larger than its size.
 // Capacity helps avoid frequent reallocations when new elements are added.
-// This example demonstrates how the size and capacity of a vector change as elements are added.
+// 
+// Capacity gets doubled when the vector runs out of space, which is why it can be larger than the size.
 
 #include <iostream>
 #include <vector>

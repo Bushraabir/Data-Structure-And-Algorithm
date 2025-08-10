@@ -38,7 +38,7 @@ int main() {
 
     // Pair Array Example
     // Declare and initialize an array of pairs
-    pair<int, int> pair_array[] = { {10, 20}, {30, 40}, {50, 60} };
+     pair<int, int> pair_array[] = { {10, 20}, {30, 40}, {50, 60} };
 
     // Access a specific pair from the array
     pair<int, int> specific_pair = pair_array[1];

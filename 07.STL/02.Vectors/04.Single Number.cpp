@@ -32,7 +32,7 @@ int singleNumber(const vector<int>& nums) {
 }
 
 int main() {
-    vector<int> nums = {4, 1, 2, 1, 2}; // Example array where every element appears twice except one.
+    vector<int> nums = {4, 1, 2, 1, 2}; 
     
     cout << "The single number in the array is: " << singleNumber(nums) << endl;
     return 0;
