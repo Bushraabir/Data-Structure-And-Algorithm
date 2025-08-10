@@ -1,27 +1,35 @@
-// This program finds the maximum subarray sum using Kadane's algorithm.
-// Kadane's algorithm efficiently computes the maximum sum of a contiguous subarray.
-// It works by iterating through the array and maintaining two variables:
-// - currentSum: the maximum subarray sum ending at the current index.
-// - maxSum: the maximum subarray sum found so far.
-// For each element, it decides whether to add the current element to the existing subarray
-// or to start a new subarray from the current element. The maximum of these choices is stored
-// as the new currentSum, and maxSum is updated accordingly.
+// Kadane's Algorithm to find the Maximum Subarray Sum
+//
+// Intuition:
+// At each number in the array, we have two choices:
+// 1) Start a new subarray from the current number, or
+// 2) Add the current number to the subarray we were building before.
+//
+// We pick the option that gives us the bigger sum at every step.
+// *****If the previous subarray sum is negative, it's better to start fresh from the current number.
+//
+// By doing this for every number, we find the subarray with the biggest total sum.
+//
+// Time Complexity:
+// The algorithm goes through the array once, so it takes O(n) time.
+//
+// Space Complexity:
+// It uses only a few variables, so the extra space used is O(1).
 
 #include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
 
-
 int maxSubArraySum(const vector<int>& nums) {
-    int maxSum = nums[0];      // Initialize maxSum with the first element
-    int currentSum = nums[0];  // Initialize currentSum with the first element
+    int maxSum = nums[0];       // Store the best sum found so far
+    int currentSum = nums[0];   // Sum of subarray ending at current position
 
-    // Iterate through the vector starting from the second element
     for (size_t i = 1; i < nums.size(); i++) {
-        // Update currentSum: either start a new subarray at nums[i] or add nums[i] to the existing subarray
+        // Choose to start new subarray at nums[i] or continue old one by adding nums[i]
         currentSum = max(nums[i], currentSum + nums[i]);
-        // Update maxSum if currentSum is greater
+
+        // Update maxSum if currentSum is bigger
         maxSum = max(maxSum, currentSum);
     }
     return maxSum;
