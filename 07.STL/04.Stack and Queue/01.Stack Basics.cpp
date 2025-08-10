@@ -1,5 +1,4 @@
 /*
-
     A stack is a **container adapter** in C++ STL that follows the **LIFO (Last In First Out)** principle.
     - This means the last element inserted is the first one to be removed.
     - You cannot access elements in the middle directly (no indexing).

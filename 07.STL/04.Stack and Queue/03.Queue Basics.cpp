@@ -11,7 +11,7 @@
 */
 
 // Helper function to show current state of the queue
-// Note: queue cannot be directly iterated without modifying it
+//  ***** Note: queue cannot be directly iterated without modifying it *****
 
 #include <iostream>
 #include <queue>    // For using queue container

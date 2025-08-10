@@ -1,7 +1,5 @@
 /*
-===============================================================
-1. Problem Statement: Balanced Parentheses
-===============================================================
+ Balanced Parentheses
 
 The problem involves checking if a given string, which contains only bracket characters, is a balanced parenthesis string.
 The possible bracket characters are: ( ), { }, and [ ]
@@ -27,16 +25,16 @@ Examples of Balanced and Unbalanced Strings:
 • Unbalanced Example 3: ))
     - Closing brackets appear before any opening bracket.
 
-================================================================
+
 2. Why Use a Stack?
-================================================================
+
 • A Stack follows the LIFO (Last-In-First-Out) principle.
 • When we find a closing bracket, we need to check if the last opening bracket matches.
 • Therefore, we push all opening brackets into a stack, and for every closing bracket, we pop from the stack and compare.
 
-================================================================
+
 3. Algorithm (Dry Run using Stack)
-================================================================
+
 Steps:
 -----
 1. Initialize an empty stack.
@@ -67,9 +65,18 @@ Step 2: [  → push '['         → Stack: { [
 Step 3: )  → mismatch with '[' → return false
 → Unbalanced
 
-================================================================
-4. Code Implementation in C++
-================================================================
+
+
+• Time Complexity: O(N)
+    - N = length of the string.
+    - We process each character once.
+    - Stack operations (push, pop, top) are O(1) each.
+
+• Space Complexity: O(N)
+    - In the worst case (all characters are opening brackets), the stack stores N elements.
+
+
+
 */
 
 #include <iostream>
@@ -114,23 +121,6 @@ bool isBalancedParenthesis(const string& s) {
     return st.empty();
 }
 
-/*
-================================================================
-5. Time and Space Complexity
-================================================================
-
-• Time Complexity: O(N)
-    - N = length of the string.
-    - We process each character once.
-    - Stack operations (push, pop, top) are O(1) each.
-
-• Space Complexity: O(N)
-    - In the worst case (all characters are opening brackets), the stack stores N elements.
-
-================================================================
-6. Sample Main Function for Testing
-================================================================
-*/
 
 int main() {
     string test1 = "([{}])";     // Balanced

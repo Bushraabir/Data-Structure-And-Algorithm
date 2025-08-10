@@ -1,12 +1,12 @@
-// 4. Min Stack Problem
-// --------------------
+//  Min Stack Problem
+// Find the minimum element in a stack
+// 
 #include <iostream>
 #include <stack>
 #include <climits>
 using namespace std;
 
-// 4.1 Approach 1: Using a Pair in the Stack
-// ----------------------------------------
+// Approach 1: Using a Pair in the Stack
 // Concept: Store (value, current_minimum) at every step
 class MinStackWithPair {
 private:
@@ -37,8 +37,9 @@ public:
 // Space Complexity: O(N) — two values stored per element (value + min)
 
 
-// 4.2 Approach 2: Optimized Space using Mathematical Encoding
-// -----------------------------------------------------------
+// Approach 2: Optimized Space using Mathematical Encoding
+
+
 class MinStackOptimized {
 private:
     stack<long long> st;
@@ -95,8 +96,8 @@ public:
 // Space Complexity: O(N) — only one value per element is stored
 
 
-// 4.3 Summary of Mathematical Trick
-// ---------------------------------
+// Summary of Mathematical Trick
+
 // When pushing a new min:
 //      push modified value = (2 * val - minElement)
 //      update minElement = val
@@ -107,8 +108,7 @@ public:
 // This allows the recovery of the previous minimum without storing extra info
 // Requires understanding of encoding/decoding pattern using math
 
-// 4.4 Example Usage
-// -----------------
+
 int main() {
     cout << "Approach 1: Using Pair in Stack\n";
     MinStackWithPair ms1;
