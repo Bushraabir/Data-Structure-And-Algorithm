@@ -26,18 +26,18 @@ Why This is a DP Problem:
 Greedy Fails Example:
 - Always choosing minimum immediate jump cost can lead to higher total cost later.
 
-Shortcut Trick for Recurrence Relation:
-1. Represent in terms of index:
-    - f(index) = min energy to reach index from stair 0.
-2. Do all possible actions:
-    - From index:
-        Option 1: From index-1 → cost = f(index-1) + abs(h[index] - h[index-1])
-        Option 2: From index-2 → cost = f(index-2) + abs(h[index] - h[index-2]) (only if index > 1)
-3. Take min (since goal is to minimize cost):
-    f(index) = min(
-        f(index-1) + abs(h[index] - h[index-1]),
-        f(index-2) + abs(h[index] - h[index-2])   // if index > 1
-    )
+*** Shortcut Trick for Recurrence Relation:
+*** 1. Represent in terms of index:
+***     - f(index) = min energy to reach index from stair 0.
+*** 2. Do all possible actions:
+***     - From index:
+***         Option 1: From index-1 → cost = f(index-1) + abs(h[index] - h[index-1])
+***         Option 2: From index-2 → cost = f(index-2) + abs(h[index] - h[index-2]) (only if index > 1)
+*** 3. Take min (since goal is to minimize cost):
+***     f(index) = min(
+***         f(index-1) + abs(h[index] - h[index-1]),
+***         f(index-2) + abs(h[index] - h[index-2])   // if index > 1
+***     )
 
 Base Cases:
 - f(0) = 0 (already at first stair)
