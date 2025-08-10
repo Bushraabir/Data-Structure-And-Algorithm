@@ -1,5 +1,5 @@
 #include <iostream> 
-#include <list>     // To use the list container
+#include <list>     
 
 using namespace std;
 
@@ -13,12 +13,12 @@ void printList(const list<int>& l, const string& message) {
 }
 
 int main() {
-    // 1️⃣ Declaring a list of integers
+    // Declaring a list of integers
     list<int> myList;
     cout << "Initial list created." << endl;
     printList(myList, "List after declaration");
 
-    // 2️⃣ Adding elements to the list
+    // Adding elements to the list
 
     // Adds to the end of the list
     myList.push_back(10);
