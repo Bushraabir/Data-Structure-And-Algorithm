@@ -24,7 +24,7 @@ using namespace std;
 
 /*
 Approach:
-This uses recursion with the "pick and not pick" (aka "take or not take") approach.
+This uses recursion with the "pick and not pick" ("take or not take") approach.
 
 Key Parameters:
 - index → current index in the `candidates` array
@@ -40,7 +40,7 @@ Rules:
     - If index == n or target < 0 → invalid → return
 */
 
-void combinationSumHelper(int index, int target, vector<int>& candidates, vector<int>& ds, vector<vector<int>>& ans) {
+void combinationSumHelper(int index, int target, vector<int>& arr, vector<int>& ds, vector<vector<int>>& ans) {
     // Base case: target matched
     if (target == 0) {
         ans.push_back(ds);
@@ -48,33 +48,33 @@ void combinationSumHelper(int index, int target, vector<int>& candidates, vector
     }
 
     // Base case: reached end of array or exceeded target
-    if (index == candidates.size() || target < 0) {
+    if (index == arr.size() || target < 0) {
         return;
     }
 
     // Pick the current element (stay at index)
-    if (candidates[index] <= target) {
-        ds.push_back(candidates[index]);
-        combinationSumHelper(index, target - candidates[index], candidates, ds, ans);
+    if (arr[index] <= target) {
+        ds.push_back(arr[index]);
+        combinationSumHelper(index, target - arr[index], arr, ds, ans);
         ds.pop_back(); // backtrack
     }
 
     // Not pick the current element (move to index + 1)
-    combinationSumHelper(index + 1, target, candidates, ds, ans);
+    combinationSumHelper(index + 1, target, arr, ds, ans);
 }
 
-vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+vector<vector<int>> combinationSum(vector<int>& arr, int target) {
     vector<vector<int>> ans;
     vector<int> ds;
-    combinationSumHelper(0, target, candidates, ds, ans);
+    combinationSumHelper(0, target, arr, ds, ans);
     return ans;
-}
+}  
 
 int main() {
-    vector<int> candidates = {2, 3, 6, 7};
+    vector<int> arr = {2, 3, 6, 7};
     int target = 7;
 
-    vector<vector<int>> result = combinationSum(candidates, target);
+    vector<vector<int>> result = combinationSum(arr, target);
 
     cout << "Unique combinations that sum to " << target << ":\n";
     for (const auto& comb : result) {

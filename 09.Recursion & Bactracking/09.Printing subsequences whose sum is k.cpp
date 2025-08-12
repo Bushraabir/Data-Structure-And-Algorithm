@@ -54,7 +54,7 @@ void printAllSubsequences(int index, vector<int>& ds, int s, int k, vector<int>&
 
     // Not take current element
     printAllSubsequences(index + 1, ds, s, k, arr, n);
-}
+}   
 
 /*
 II. Print Only One Subsequence with Sum = K

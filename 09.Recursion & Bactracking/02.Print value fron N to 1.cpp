@@ -9,9 +9,7 @@ using namespace std;
 int printUpto1(int n) {
     if (n == 0) return 0; // Base case: if n is 0, return 0
     cout << n << " ";
-    printUpto1(n - 1); // Recursive call with n-1
-     
-   
+    printUpto1(n - 1); // Recursive call with n-1   
 }
 
 int main() {
