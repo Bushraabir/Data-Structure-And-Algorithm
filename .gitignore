@@ -1,0 +1,10 @@
+# Ignore all output folders anywhere in the repo
+**/output/
+
+# Ignore VS Code settings folder
+.vscode/
+
+# Optional: ignore build artifacts and temp files
+*.exe
+*.out
+*.o
