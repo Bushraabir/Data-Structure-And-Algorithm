@@ -49,14 +49,17 @@ using namespace std;
 bool isValid(const vector<vector<char>>& board, int row, int col, char c) {
     // Check the row and column in one loop
     for (int i = 0; i < 9; ++i) {
+
         // Row check: same row, different column
         if (board[row][i] == c) return false;
         // Column check: same column, different row
         if (board[i][col] == c) return false;
+
         // 3×3 box check:
         // Compute top-left corner of the 3×3 box:
         //   boxStartRow = (row/3)*3, boxStartCol = (col/3)*3
         // Then iterate i from 0..8 to cover all 9 cells in that box
+
         int boxRow = (row / 3) * 3 + i / 3;
         int boxCol = (col / 3) * 3 + i % 3;
         if (board[boxRow][boxCol] == c) return false;
