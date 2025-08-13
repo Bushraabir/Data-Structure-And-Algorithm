@@ -29,10 +29,10 @@ using namespace std;
  */
 
 void insertionSort(vector<int>& arr) {
-    int n = arr.size();
+  
 
     // Loop starts from 1 because the element at index 0 is already considered sorted
-    for (int i = 1; i < n; i++) {
+    for (int i = 1; i < arr.size() ; i++) {
         int key = arr[i];       // Key is the element we want to insert into the sorted portion
         int j = i - 1;
 
