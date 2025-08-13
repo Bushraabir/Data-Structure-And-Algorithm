@@ -1,5 +1,5 @@
 /*
-Problem: Combination Sum I (Leetcode 39)
+Combination Sum I (Leetcode 39)
 
 You are given a list of distinct integers called `candidates` and a target integer `target`.
 
@@ -61,7 +61,7 @@ void combinationSumHelper(int index, int target, vector<int>& arr, vector<int>& 
 
     // Not pick the current element (move to index + 1)
     combinationSumHelper(index + 1, target, arr, ds, ans);
-}
+ }
 
 vector<vector<int>> combinationSum(vector<int>& arr, int target) {
     vector<vector<int>> ans;

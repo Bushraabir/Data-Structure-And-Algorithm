@@ -40,36 +40,37 @@
 #include <algorithm>
 using namespace std;
 
-void findCombinations(int index, int target, vector<int>& candidates, 
-                      vector<int>& current, vector<vector<int>>& result) {
+
+void findCombinations(int index, int target, vector<int>& arr, 
+                      vector<int>& ds, vector<vector<int>>& ans) {
     if (target == 0) {
-        result.push_back(current);
+        ans.push_back(ds);
         return;
     }
 
-    for (int i = index; i < candidates.size(); i++) {
+    for (int i = index; i < arr.size(); i++) {
         // Skip duplicates at the same recursion depth
-        if (i > index && candidates[i] == candidates[i - 1]) continue;
+        if (i > index && arr[i] == arr[i - 1]) continue;
 
         // If current number exceeds target, break (prune)
-        if (candidates[i] > target) break;
+        if (arr[i] > target) break;
 
         // Pick the current number
-        current.push_back(candidates[i]);
+        ds.push_back(arr[i]);
         
         // Recurse with next index (each number can be used once)
-        findCombinations(i + 1, target - candidates[i], candidates, current, result);
+        findCombinations(i + 1, target - arr[i], arr, ds, ans);
         
         // Backtrack
-        current.pop_back();
+        ds.pop_back();
     }
 }
 
-vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-    sort(candidates.begin(), candidates.end());  // Sort input for duplicate handling and pruning
+vector<vector<int>> combinationSum2(vector<int>& arr, int target) {
+    sort(arr.begin(), arr.end());  // Sort input for duplicate handling and pruning
     vector<vector<int>> result;
     vector<int> current;
-    findCombinations(0, target, candidates, current, result);
+    findCombinations(0, target, arr, current, result);
     return result;
 }
 

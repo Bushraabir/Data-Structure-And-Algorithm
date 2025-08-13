@@ -31,7 +31,7 @@ Space Complexity: O(n) recursion depth
 using namespace std;
 
 /*
-Note:
+
 - We recursively decide for each element whether to include it or not.
 - Each decision forms a branch in the recursion tree.
 - To backtrack after "taking" an element, we pop it from the current path.

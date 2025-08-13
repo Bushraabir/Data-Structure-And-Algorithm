@@ -1,10 +1,10 @@
 /*  
 Quick Sort is a popular divide-and-conquer sorting algorithm.
-It selects a "pivot" element and partitions the array such that elements less than the pivot are on the left, and elements greater than the pivot are on the right.
+It selects a ***"pivot"*** element and partitions the array such that elements less than the pivot are on the left, and elements greater than the pivot are on the right.
 Then, it recursively applies the same logic to the subarrays on the left and right of the pivot.
 
 Working Principle:
-- Choose a pivot element from the array (commonly the last element).
+- Choose a pivot element from the array (here: the first element, `low` index).
 - Rearrange the array by placing all elements smaller than the pivot to its left and all greater elements to its right (partitioning).
 - Recursively apply the above steps to the left and right subarrays.
 - Repeat until the entire array is sorted.
@@ -12,7 +12,7 @@ Working Principle:
 Time Complexity:
     - Best Case: O(N log N) (Balanced partitions)
     - Average Case: O(N log N)
-    - Worst Case: O(N^2) (Occurs when pivot choices are poor, e.g., already sorted array with last element as pivot)
+    - Worst Case: O(N^2) (Occurs when pivot choices are poor, e.g., already sorted array with first element as pivot)
 
 Space Complexity:
     - O(log N) (Due to recursion stack in average case)
@@ -25,20 +25,35 @@ Adaptive: No (Does not take advantage of existing order in the input)
 #include <vector>
 using namespace std;
 
-// Partition function to place pivot at correct position
+// Partition function to place pivot at correct position (pivot = first element)
 int partition(vector<int>& arr, int low, int high) {
-    int pivot = arr[high];  // Choose the last element as pivot
-    int i = low - 1;        // Index of smaller element
+    int pivot = arr[low];  // Choose the first element as pivot
+    int i = low + 1;       // Start checking from the next element
+    int j = high;          // Start from the end
 
-    for (int j = low; j < high; j++) {
-        if (arr[j] < pivot) {
+    while (true) {
+        // Move i right until an element >= pivot is found
+        while (i <= j && arr[i] <= pivot) {
             i++;
-            swap(arr[i], arr[j]);
         }
+
+        // Move j left until an element <= pivot is found
+        while (i <= j && arr[j] > pivot) {
+            j--;
+        }
+
+        // If pointers cross, break
+        if (i > j) {
+            break;
+        }
+
+        // Swap elements at i and j
+        swap(arr[i], arr[j]);
     }
-    // Place pivot after the last smaller element
-    swap(arr[i + 1], arr[high]);
-    return i + 1;  // Return pivot position
+
+    // Place pivot in its correct position
+    swap(arr[low], arr[j]);
+    return j; // Return pivot position
 }
 
 // Quick Sort function
