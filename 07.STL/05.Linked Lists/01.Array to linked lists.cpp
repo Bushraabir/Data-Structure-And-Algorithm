@@ -80,7 +80,44 @@ Node* convertArrayToLinkedList(int arr[], int n) {
 
     return head;  // Return the starting node of the list
 }
+/*
 
+In C++, variables can live in two main places:
+
+    -- Stack memory -> Automatically managed, temporary storage.
+
+    -- Heap memory -> Manually managed, long-lived storage.
+
+
+
+Stack memory;
+
+Created automatically when a function runs.
+Destroyed automatically when the function ends.
+Fast, but short-lived.
+
+Example:
+    int x = 5; // x lives on the stack
+    void func() {
+        int y = 10; // y lives on the stack, destroyed when func() ends
+    }
+
+Heap memory:
+
+Created manually using new.
+Stays alive until you manually delete it.
+Slower to allocate, but long-lived and flexible.
+
+Example:
+    Node* node = new Node(5); // node lives on the heap
+    delete node; //  must delete it to free memory
+
+
+    
+    ***When you create a linked list node inside a function, you want it to still exist after the function ends.
+        If you store it in the stack, it will be destroyed immediately when the function returns.***
+
+*/
 
 int main() {
     int arr[] = {10, 20, 30, 40, 50};
