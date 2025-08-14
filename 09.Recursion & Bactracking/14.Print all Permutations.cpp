@@ -33,10 +33,7 @@ using namespace std;
 
 
 
-void permute_BruteForce_Helper(const vector<int>& nums,
-                               vector<bool>& used,
-                               vector<int>& path,
-                               vector<vector<int>>& ans) {
+void permute_BruteForce_Helper(const vector<int>& nums,vector<bool>& used,vector<int>& path,vector<vector<int>>& ans) {
     int n = nums.size();
     // Base case: if we've picked N elements, record the permutation
     if (path.size() == n) {
@@ -76,9 +73,7 @@ vector<vector<int>> permute_BruteForce(vector<int>& nums) {
  */
 
  
-void permute_Optimized_Helper(int index,
-                              vector<int>& nums,
-                              vector<vector<int>>& ans) {
+void permute_Optimized_Helper(int index, vector<int>& nums, vector<vector<int>>& ans) {
     int n = nums.size();
     // Base case: index == n means all positions are fixed, record the permutation
     if (index == n) {
