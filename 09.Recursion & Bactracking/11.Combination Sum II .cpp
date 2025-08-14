@@ -48,7 +48,7 @@ void findCombinations(int index, int target, vector<int>& arr,
         return;
     }
 
-    for (int i = index; i < arr.size(); i++) {
+    for (int i = index; i < arr.size(); i++) { // to explore all possible candidates starting from the current index — but not before it
         // Skip duplicates at the same recursion depth
         if (i > index && arr[i] == arr[i - 1]) continue;
 
