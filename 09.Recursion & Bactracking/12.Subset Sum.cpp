@@ -56,7 +56,7 @@ void findSubsetSums(int index, int currentSum, vector<int>& arr, vector<int>& su
 vector<int> subsetSums(vector<int>& arr) {
     vector<int> sums;
     findSubsetSums(0, 0, arr, sums);
-    sort(sums.begin(), sums.end());
+    sort(sums.begin(), sums.end()); // in order to Print all possible subset sums in increasing order
     return sums;
 }
 
