@@ -52,6 +52,8 @@ vector<int> BruteForce(const vector<int>& nums) {
 // Traverse the array from right to left so we know the elements that come after the current one
 // For each element, we pop all smaller/equal elements (as they can’t be the answer)
 // The remaining top (if any) is the next greater
+
+
 vector<int> Optimized(const vector<int>& nums) {
     int n = nums.size();
     vector<int> result(n, -1);
@@ -73,6 +75,8 @@ vector<int> Optimized(const vector<int>& nums) {
     }
     return result;
 }
+
+
 // Time Complexity: O(N)
 //     - Each element is pushed and popped at most once
 // Space Complexity: O(N)

@@ -65,7 +65,7 @@ struct Node { //Node is the self defined data type
 
 // Convert an array to a linked list
 Node* convertArrayToLinkedList(int arr[], int n) {
-    if (n == 0) return nullptr;
+     if (n == 0) return nullptr;
 
     // First element becomes the head of the list
     Node* head = new Node(arr[0], nullptr);
@@ -74,8 +74,8 @@ Node* convertArrayToLinkedList(int arr[], int n) {
     // Loop through remaining elements
     for (int i = 1; i < n; i++) {
         Node* temp = new Node(arr[i], nullptr);  // Create a new node
-        mover->next = temp;             // Link current node to new node
-        mover = temp;                   // Move the tail forward
+        mover->next = temp;             // Link current node to new node (link to arr[0] and arr[1]))
+        mover = temp;                   // Move the tail forward (mover now points to the new node)
     }
 
     return head;  // Return the starting node of the list
@@ -115,7 +115,7 @@ Example:
 
     
     ***When you create a linked list node inside a function, you want it to still exist after the function ends.
-        If you store it in the stack, it will be destroyed immediately when the function returns.***
+        If you store it in the stack, it will be destroyed immediately when the function returns.
 
 */
 

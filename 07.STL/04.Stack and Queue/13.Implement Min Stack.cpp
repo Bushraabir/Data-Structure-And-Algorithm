@@ -17,6 +17,7 @@ public:
         if (st.empty()) {
             st.push({val, val});
         } else {
+            // Store current value and the minimum so far
             st.push({val, min(val, st.top().second)});
         }
     }
@@ -26,11 +27,11 @@ public:
     }
 
     int top() {
-        return st.top().first;
+        return st.top().first; // Return the actual top value
     }
 
     int getMin() {
-        return st.top().second;
+        return st.top().second; // Return the minimum value so far
     }
 };
 // Time Complexity: O(1) for all operations
@@ -38,16 +39,17 @@ public:
 
 
 // Approach 2: Optimized Space using Mathematical Encoding
+// Concept: Store only one value per node and encode new minimums
+// Warning: Using int may overflow if values are large (safe for small numbers)
 
-
-class MinStackOptimized {
+class MinStackOptimizedInt {
 private:
-    stack<long long> st;
-    long long minElement; // To track the minimum element
+    stack<int> st;
+    int minElement; // To track the minimum element
 
 public:
-    MinStackOptimized() {
-        minElement = LLONG_MAX;
+    MinStackOptimizedInt() {
+        minElement = INT_MAX;
     }
 
     void push(int val) {
@@ -58,30 +60,33 @@ public:
             st.push(val);
         } else {
             // Encode the new minimum value
-            long long encoded = 2LL * val - minElement;
+            // ****************  Formula: encoded = 2*val - minElement ****************
+            // Warning: may overflow if val or minElement is large
+            int encoded = 2 * val - minElement;
             st.push(encoded);
-            minElement = val;
+            minElement = val; // Update minElement
         }
     }
 
     void pop() {
         if (st.empty()) return;
 
-        long long topVal = st.top();
+        int topVal = st.top();
         st.pop();
 
         if (topVal < minElement) {
             // Decoding previous minimum
-            minElement = 2LL * minElement - topVal;
+            // Formula: previousMin = 2*minElement - encoded
+            minElement = 2 * minElement - topVal;
         }
     }
 
     int top() {
         if (st.empty()) return -1;
 
-        long long topVal = st.top();
+        int topVal = st.top();
         if (topVal >= minElement) {
-            return topVal;
+            return topVal; // Normal value
         } else {
             // Encoded value, real top is minElement
             return minElement;
@@ -95,19 +100,14 @@ public:
 // Time Complexity: O(1) for all operations
 // Space Complexity: O(N) — only one value per element is stored
 
-
 // Summary of Mathematical Trick
-
 // When pushing a new min:
 //      push modified value = (2 * val - minElement)
 //      update minElement = val
-
 // When popping a modified value:
 //      minElement = (2 * minElement - encoded_value)
-
-// This allows the recovery of the previous minimum without storing extra info
-// Requires understanding of encoding/decoding pattern using math
-
+// This allows recovery of the previous minimum without storing extra info
+// Using int may overflow for large values; for safety, use long long
 
 int main() {
     cout << "Approach 1: Using Pair in Stack\n";
@@ -119,8 +119,8 @@ int main() {
     ms1.pop();
     cout << "Top: " << ms1.top() << ", Min: " << ms1.getMin() << endl;
 
-    cout << "\nApproach 2: Optimized Min Stack\n";
-    MinStackOptimized ms2;
+    cout << "\nApproach 2: Optimized Min Stack (int)\n";
+    MinStackOptimizedInt ms2;
     ms2.push(5);
     ms2.push(3);
     ms2.push(7);
