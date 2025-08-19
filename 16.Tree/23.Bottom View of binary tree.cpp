@@ -8,9 +8,8 @@ Problem Statement:
 Find the **bottom view** of a binary tree.
 
 Definition:
-- The bottom view contains nodes visible when the tree is viewed from the bottom.
-- For each vertical line (line number), the **last node encountered** in level order traversal is included.
-- Nodes are listed from leftmost line to rightmost line.
+- The bottom view of a binary tree is the set of nodes visible when looking 
+  at the tree from the bottom.
 
 Example Tree:
 
@@ -22,41 +21,40 @@ Example Tree:
              \
               6
 
-Expected Output: 4 8 6 9 7
-- Line -2: 4
-- Line -1: 8
-- Line 0: 6
-- Line 1: 9
-- Line 2: 7
+Bottom View Output: 4, 8, 6, 9, 7
 
 ================================================================================
 Intuition / Approach:
 ================================================================================
-Level Order Traversal (BFS) with Horizontal Distances:
-1. Assign line numbers (horizontal distance) to each node:
-   - Root: line = 0
+Level Order Traversal (BFS) with Line (Horizontal Distance):
+
+1. Assign a horizontal distance (line number) to each node:
+   - Root: line 0
    - Left child: line - 1
    - Right child: line + 1
-2. Use a map to store the last node at each line:
-   - map<int, int> bottomNodes;  // line → node value
-   - Overwrite value for each line whenever a node is encountered
-3. Use a queue for BFS:
-   - queue<pair<Node*, int>> q;  // Node + line
-4. BFS Loop:
-   a) Dequeue node with its line
-   b) Update map with current node's value
-   c) Enqueue left child with line-1
-   d) Enqueue right child with line+1
-5. Construct result vector by iterating map in order of line keys
-6. Return result
+
+2. Use a map<int, int> to store the latest node encountered at each line:
+   - Each time a node is encountered during BFS, update the map with its value.
+   - This ensures the last node at each line (i.e., bottommost) is stored.
+
+3. Use a queue<pair<Node*, int>> for BFS:
+   - pair contains node pointer and its line number.
+   - Enqueue root with line 0.
+   - For each node:
+     a) Update map[line] = node->data
+     b) Enqueue left child with line - 1
+     c) Enqueue right child with line + 1
+
+4. After BFS completes, traverse the map in order of keys:
+   - Collect values to get the bottom view from left to right.
 
 Time Complexity: O(N)
-- Each node is visited once
-- Map insertion/update takes O(log N) per node in worst case
+- Each node is visited exactly once.
+- Map operations take O(log K) where K = number of distinct lines ≤ N
 
 Space Complexity: O(N)
-- Queue may store up to O(W) nodes (max width)
-- Map stores up to O(N) entries
+- Queue can store up to O(W) nodes (W = max width)
+- Map can store up to O(N) nodes
 
 ================================================================================
 */
@@ -76,31 +74,31 @@ struct Node {
 };
 
 // ---------------------------
-// Bottom View Function
+// Function to Find Bottom View
 // ---------------------------
 vector<int> bottomView(Node* root) {
-    vector<int> result;
-    if (!root) return result;
+    if (!root) return {};
 
-    map<int, int> bottomNodes;  // line → node value
-    queue<pair<Node*, int>> q;  // Node + line
+    map<int, int> lineMap;               // line number -> bottommost node
+    queue<pair<Node*, int>> q;           // BFS queue
+
     q.push({root, 0});
 
     while (!q.empty()) {
-        auto [curr, line] = q.front(); q.pop();
+        auto [node, line] = q.front();
+        q.pop();
 
-        // Always update/overwrite map with current node
-        bottomNodes[line] = curr->data;
+        // Overwrite value at this line with current node
+        lineMap[line] = node->data;
 
-        if (curr->left) q.push({curr->left, line - 1});
-        if (curr->right) q.push({curr->right, line + 1});
+        if (node->left) q.push({node->left, line - 1});
+        if (node->right) q.push({node->right, line + 1});
     }
 
-    // Extract bottom view nodes in left-to-right order
-    for (auto& [line, val] : bottomNodes) {
+    vector<int> result;
+    for (auto& [line, val] : lineMap) {
         result.push_back(val);
     }
-
     return result;
 }
 
@@ -109,7 +107,7 @@ vector<int> bottomView(Node* root) {
 // ---------------------------
 int main() {
     /*
-        Constructing Binary Tree:
+        Constructing Example Tree:
 
                 1
                / \
@@ -124,15 +122,14 @@ int main() {
     root->right = new Node(3);
     root->left->left = new Node(4);
     root->left->right = new Node(5);
-    root->right->right = new Node(7);
     root->left->right->right = new Node(6);
+    root->right->right = new Node(7);
 
-    vector<int> traversal = bottomView(root);
+    vector<int> bottom = bottomView(root);
 
     cout << "Bottom View: ";
-    for (int val : traversal)
-        cout << val << " ";
-    cout << "\n";
+    for (int val : bottom) cout << val << " ";
+    cout << endl;
 
     return 0;
 }
@@ -142,13 +139,12 @@ int main() {
 Time and Space Complexity Explanation:
 ================================================================================
 Time Complexity: O(N)
-- Each node visited once
-- Map insertion/update takes O(log N) per node in worst case
+- Each node is visited once during BFS.
+- Map insertion/update takes O(log K), K ≤ N, overall O(N log N) in strict sense.
 
 Space Complexity: O(N)
-- Queue may store up to O(W) nodes (max width)
+- Queue can hold up to O(W) nodes (max width)
 - Map stores up to O(N) nodes
-- Total auxiliary space: O(N)
-
+- Overall: O(N)
 ================================================================================
 */
