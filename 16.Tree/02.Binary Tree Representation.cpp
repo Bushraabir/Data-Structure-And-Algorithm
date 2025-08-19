@@ -2,91 +2,110 @@
 using namespace std;
 
 /*
-------------------------------------------------------
-🔹 Binary Tree Representation in C++
-------------------------------------------------------
-Core building block = Node
+================================================================================
+Problem Statement:
+================================================================================
+Build a simple binary tree and verify it using a **Preorder Traversal** (Root → Left → Right).
 
-Each Node has:
-1. int data    -> value stored in the node
-2. Node* left  -> pointer to left child
-3. Node* right -> pointer to right child
+Given a binary tree, implement:
+1. Node structure using pointers.
+2. Preorder traversal function (recursive).
 
-⚡ If a child does not exist, its pointer = NULL.
-This NULL marks the "end" of a branch.
+Example Tree:
 
-Example (Tree we will build):
-
-            1   <- root
+            1
            / \
           2   3
          / \
         4   5
 
-Explanation:
-- Root has value 1
-- Left child of root = 2
-- Right child of root = 3
-- Node 2 has two children: 4 (left), 5 (right)
-- Nodes 3, 4, 5 have no children → their pointers = NULL
-------------------------------------------------------
+Expected Preorder Output: 1 2 4 5 3
+
+================================================================================
+Intuition / Approach:
+================================================================================
+1. Each node contains:
+    - int data
+    - Node* left
+    - Node* right
+2. Build tree using "new" keyword:
+    a) Create root
+    b) Attach children using pointers
+3. Preorder Traversal:
+    a) Visit root
+    b) Traverse left subtree recursively
+    c) Traverse right subtree recursively
+
+Time Complexity: O(N)
+- Each node is visited exactly once.
+
+Space Complexity: O(H)
+- H = height of the tree
+- Recursion stack can hold up to H nodes.
+================================================================================
 */
 
-// Definition of a Node
+// ---------------------------
+// Definition of a Node in Binary Tree
+// ---------------------------
 struct Node {
-    int data;       // Value of the node
-    Node* left;     // Pointer to left child
-    Node* right;    // Pointer to right child
+    int data;
+    Node* left;
+    Node* right;
 
-    // Constructor: initializes data, sets children to NULL
     Node(int val) {
         data = val;
-        left = NULL;
-        right = NULL;
+        left = right = NULL;
     }
 };
 
-/*
-------------------------------------------------------
-🔹 Building the Tree
-------------------------------------------------------
-We use pointers and the "new" keyword to create nodes.
-
-Step 1: Node* root = new Node(1);
-        -> creates root with value 1
-
-Step 2: root->left = new Node(2);
-        root->right = new Node(3);
-
-Step 3: root->left->left = new Node(4);
-        root->left->right = new Node(5);
-------------------------------------------------------
-*/
-
-// A simple Preorder Traversal (Root → Left → Right)
-// just to verify that the tree was built correctly.
+// ---------------------------
+// Preorder Traversal (Root -> Left -> Right)
+// ---------------------------
 void preorder(Node* root) {
-    if (root == NULL) return; // base case
-    cout << root->data << " "; // print root
-    preorder(root->left);      // go left
-    preorder(root->right);     // go right
+    if (!root) return;
+    cout << root->data << " ";
+    preorder(root->left);
+    preorder(root->right);
 }
 
+// ---------------------------
+// MAIN FUNCTION
+// ---------------------------
 int main() {
-    // Step 1: Create Root
-    Node* root = new Node(1);
+    /*
+        Constructing the Binary Tree:
 
-    // Step 2: Create children of root
+            1
+           / \
+          2   3
+         / \
+        4   5
+    */
+    Node* root = new Node(1);
     root->left = new Node(2);
     root->right = new Node(3);
-
-    // Step 3: Create children of node 2
     root->left->left = new Node(4);
     root->left->right = new Node(5);
 
-    // Preorder Traversal Output should be: 1 2 4 5 3
     cout << "Preorder Traversal of Tree: ";
     preorder(root);
+    cout << "\n";
 
     return 0;
 }
+
+/*
+================================================================================
+Time and Space Complexity Explanation:
+================================================================================
+Preorder Traversal:
+- Time Complexity: O(N)
+  - Each node is visited exactly once.
+
+- Space Complexity: O(H)
+  - Recursion stack stores nodes along current path from root to leaf.
+  - Best case (balanced tree): O(log N)
+  - Worst case (skewed tree): O(N)
+================================================================================
+*/

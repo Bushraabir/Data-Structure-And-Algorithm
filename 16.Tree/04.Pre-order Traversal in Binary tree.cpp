@@ -1,46 +1,17 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// -------------------------------
-// Definition of a Node in Binary Tree
-// -------------------------------
-struct Node {
-    int data;        // stores the value of the node
-    Node* left;      // pointer to the left child
-    Node* right;     // pointer to the right child
-    
-    // Constructor to create a new node
-    Node(int val) {
-        data = val;
-        left = right = NULL; // initially no children
-    }
-};
+/*
+================================================================================
+Problem Statement:
+================================================================================
+Perform a **Preorder Traversal** of a binary tree using **recursion**.  
+In **Preorder Traversal**, the order of visiting nodes is:
+    Root -> Left Subtree -> Right Subtree
 
-// -------------------------------
-// Preorder Traversal Function
-// Rule: Root -> Left -> Right
-// -------------------------------
-void preorder(Node* root) {
-    // Base Case: if the current node is NULL,
-    // it means we have reached the end of a branch.
-    if (root == NULL) return;
+Given a binary tree, print or return the nodes in **preorder** recursively.
 
-    // Step 1: Process the "Root" first (print its data)
-    cout << root->data << " ";
-
-    // Step 2: Recursively traverse the "Left Subtree"
-    preorder(root->left);
-
-    // Step 3: Recursively traverse the "Right Subtree"
-    preorder(root->right);
-}
-
-// -------------------------------
-// Main Function
-// -------------------------------
-int main() {
-    /* 
-        Constructing the Binary Tree for dry run:
+Example Tree:
 
                  1
                 / \
@@ -49,12 +20,81 @@ int main() {
              4   5   8
                 /   / \
                6   9  10
-                  /
-                 7
+              /
+             7
 
-        Expected Preorder Traversal: 
-        Root -> Left -> Right
-        Sequence = 1 2 4 5 6 3 7 8 9 10
+Expected Preorder Output: 1 2 4 5 6 3 7 8 9 10
+
+================================================================================
+Intuition / Approach:
+================================================================================
+1. Preorder follows "Root -> Left -> Right".
+2. Use recursion to traverse the tree:
+    a) Process the root node (print or add to result) first.
+    b) Traverse the left subtree recursively.
+    c) Traverse the right subtree recursively.
+3. Base Case: If the current node is NULL, return immediately.
+4. This ensures that each node is processed **before** its children, following the preorder rule.
+5. Continue until all nodes are visited.
+
+Time Complexity: O(N)
+- Each node is visited exactly **once**.
+- There is a single recursion call per node.
+
+Space Complexity: O(H)
+- H is the height of the tree.
+- The recursion stack can hold at most H nodes at a time.
+- Best case (balanced tree): O(log N)
+- Worst case (skewed tree): O(N)
+
+================================================================================
+*/
+
+// ---------------------------
+// Definition of a Node in Binary Tree
+// ---------------------------
+struct Node {
+    int data;       // Value of the node
+    Node* left;     // Pointer to left child
+    Node* right;    // Pointer to right child
+
+    // Constructor for easy node creation
+    Node(int val) {
+        data = val;
+        left = right = NULL;
+    }
+};
+
+// ---------------------------
+// Recursive Preorder Traversal Function
+// ROOT -> LEFT -> RIGHT
+// ---------------------------
+void preorder(Node* root) {
+    if (root == NULL) return;      // Base case: empty node
+
+    cout << root->data << " ";     // Step 1: Process root
+    preorder(root->left);          // Step 2: Traverse left subtree
+    preorder(root->right);         // Step 3: Traverse right subtree
+}
+
+// ---------------------------
+// MAIN FUNCTION
+// ---------------------------
+int main() {
+    /*
+        Constructing the following Binary Tree for demo:
+
+                 1
+                / \
+               2   3
+              / \   \
+             4   5   8
+                /   / \
+               6   9  10
+              /
+             7
+
+        Preorder Traversal Output: 1 2 4 5 6 3 7 8 9 10
     */
 
     Node* root = new Node(1);
@@ -63,7 +103,6 @@ int main() {
 
     root->left->left = new Node(4);
     root->left->right = new Node(5);
-
     root->left->right->left = new Node(6);
 
     root->right->left = new Node(7);
@@ -72,46 +111,27 @@ int main() {
     root->right->right->left = new Node(9);
     root->right->right->right = new Node(10);
 
-    // Perform Preorder Traversal
-    cout << "Preorder Traversal of the Binary Tree is:\n";
+    cout << "Preorder Traversal of Tree: ";
     preorder(root);
+    cout << "\n";
 
     return 0;
 }
 
 /*
--------------------------------
-🔹 NOTES / EXPLANATION
--------------------------------
-1. Preorder Traversal follows the rule:
-   "Root -> Left -> Right"
+================================================================================
+Time and Space Complexity Explanation:
+================================================================================
+Time Complexity: O(N)
+- Each node is visited exactly once.
+- Each visit performs constant-time operations (printing and recursion calls).
+- Total = O(N), where N is the number of nodes in the tree.
 
-2. The recursion stack works as:
-   - Visit the root
-   - Move left (keep going recursively)
-   - When left is done, go right
-
-3. Dry Run Example:
-   For the above tree:
-   Visit 1 → (root)
-   Then go left → 2
-   Then go left → 4
-   Backtrack → go right of 2 → 5
-   Then left of 5 → 6
-   Backtrack fully → go right of 1 → 3
-   Then left → 7
-   Backtrack → right of 3 → 8
-   Then left of 8 → 9
-   Then right of 8 → 10
-
-   ✅ Final Sequence: 1 2 4 5 6 3 7 8 9 10
-
-4. Time Complexity: O(N) 
-   - Each node is visited exactly once.
-
-5. Space Complexity: O(H)
-   - Due to recursion stack, where H = height of tree.
-   - Worst case (skewed tree): O(N).
-   - Best case (balanced tree): O(log N).
--------------------------------
+Space Complexity: O(H)
+- H = height of the tree.
+- The recursion stack stores the nodes along the current path from root to leaf.
+- Best case (perfectly balanced tree): H = log2(N) → Space = O(log N)
+- Worst case (completely skewed tree): H = N → Space = O(N)
+- No additional data structures are used.
+================================================================================
 */

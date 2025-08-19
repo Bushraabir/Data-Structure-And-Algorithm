@@ -1,15 +1,54 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+/*
+================================================================================
+Problem Statement:
+================================================================================
+Perform an **Inorder Traversal** of a binary tree using **recursion**.  
+In **Inorder Traversal**, the order of visiting nodes is:
+    Left Subtree -> Root -> Right
+
+Given a binary tree, print or return the nodes in **inorder** recursively.
+
+Example Tree:
+
+                  1
+                /   \
+               2     3
+              / \   / \
+             4   5 7   8
+                /     / \
+               6     9  10
+
+Expected Inorder Output: 4 2 6 5 1 7 3 9 8 10
+
+================================================================================
+Intuition / Approach:
+================================================================================
+1. Inorder is "Left -> Root -> Right".
+2. Use recursion to traverse each subtree:
+    a) Traverse the left subtree recursively.
+    b) Process the root node (print or add to result).
+    c) Traverse the right subtree recursively.
+3. Base Case: If the current node is NULL, return immediately.
+4. This ensures nodes are processed in the correct inorder sequence.
+5. Continue until all nodes are visited.
+
+Time Complexity: O(N), as each node is visited exactly once.
+Space Complexity: O(H), where H is the height of the tree (recursion stack usage).
+================================================================================
+*/
+
 // ---------------------------
 // Definition of a Node in Binary Tree
 // ---------------------------
 struct Node {
-    int data;       // Stores the value of the node
+    int data;       // Value of the node
     Node* left;     // Pointer to left child
     Node* right;    // Pointer to right child
 
-    // Constructor to quickly create a new node
+    // Constructor for easy node creation
     Node(int val) {
         data = val;
         left = right = NULL;
@@ -17,21 +56,15 @@ struct Node {
 };
 
 // ---------------------------
-// Inorder Traversal Function (Recursive)
-// Rule: LEFT -> ROOT -> RIGHT
+// Recursive Inorder Traversal Function
+// LEFT -> ROOT -> RIGHT
 // ---------------------------
 void inorder(Node* root) {
-    // Base Case: If current node is NULL, stop recursion
-    if (root == NULL) return;
+    if (root == NULL) return;    // Base case: empty node
 
-    // Step 1: Traverse the left subtree
-    inorder(root->left);
-
-    // Step 2: Process (print) the root node
-    cout << root->data << " ";
-
-    // Step 3: Traverse the right subtree
-    inorder(root->right);
+    inorder(root->left);         // Step 1: Traverse left subtree
+    cout << root->data << " ";   // Step 2: Process root node
+    inorder(root->right);        // Step 3: Traverse right subtree
 }
 
 // ---------------------------
@@ -40,7 +73,7 @@ void inorder(Node* root) {
 int main() {
     /*
         Constructing the following Binary Tree for demo:
-        
+
                   1
                 /   \
                2     3
@@ -48,11 +81,10 @@ int main() {
              4   5 7   8
                 /     / \
                6     9  10
-               
+
         Inorder Traversal Output: 4 2 6 5 1 7 3 9 8 10
     */
 
-    // Creating Nodes
     Node* root = new Node(1);
     root->left = new Node(2);
     root->right = new Node(3);
@@ -66,9 +98,9 @@ int main() {
     root->right->right->left = new Node(9);
     root->right->right->right = new Node(10);
 
-    // Print inorder traversal
     cout << "Inorder Traversal of Tree: ";
     inorder(root);
+    cout << "\n";
 
     return 0;
 }
