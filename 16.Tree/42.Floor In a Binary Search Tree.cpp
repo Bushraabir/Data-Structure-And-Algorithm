@@ -1,6 +1,6 @@
-// Ceil in a Binary Search Tree (BST)
+// Floor in a Binary Search Tree (BST)
 // ----------------------------------
-// Problem: Find the smallest node in a BST whose value is greater than or equal 
+// Problem: Find the largest node in a BST whose value is smaller than or equal 
 // to a given key. If no such node exists, return nullptr.
 
 #include <bits/stdc++.h>
@@ -21,37 +21,37 @@ struct Node {
 };
 
 // ---------------------------
-// Iterative Ceil in BST
+// Iterative Floor in BST
 // ---------------------------
-Node* ceilBST(Node* root, int key) {
-    Node* ceilNode = nullptr;
+Node* floorBST(Node* root, int key) {
+    Node* floorNode = nullptr;
     while (root) {
         if (root->data == key) {
-            ceilNode = root;
-            break;  // Exact match found
-        } else if (key < root->data) {
-            ceilNode = root;   // Possible ceil, move left to find smaller one
-            root = root->left;
+            floorNode = root;  // Exact match
+            break;
+        } else if (root->data > key) {
+            root = root->left;  // Move left for smaller values
         } else {
-            root = root->right;  // Move right if key is larger
+            floorNode = root;   // Potential floor, move right to find larger <= key
+            root = root->right;
         }
     }
-    return ceilNode;
+    return floorNode;
 }
 // Time Complexity: O(h) where h = height of BST (O(log N) for balanced BST)
 // Space Complexity: O(1) iterative
 
 // ---------------------------
-// Recursive Ceil in BST
+// Recursive Floor in BST
 // ---------------------------
-Node* ceilBSTRecursive(Node* root, int key) {
+Node* floorBSTRecursive(Node* root, int key) {
     if (!root) return nullptr;
 
     if (root->data == key) return root;
-    else if (key > root->data) return ceilBSTRecursive(root->right, key);
+    else if (root->data > key) return floorBSTRecursive(root->left, key);
     else {
-        Node* leftCeil = ceilBSTRecursive(root->left, key);
-        return leftCeil ? leftCeil : root;
+        Node* rightFloor = floorBSTRecursive(root->right, key);
+        return rightFloor ? rightFloor : root;
     }
 }
 // Time Complexity: O(h)
@@ -94,12 +94,12 @@ int main() {
     inorder(root);
     cout << endl;
 
-    int key = 5;
-    Node* ceilNode = ceilBST(root, key);
-    if (ceilNode)
-        cout << "Ceil of " << key << " in BST is: " << ceilNode->data << endl;
+    int key = 9;
+    Node* floorNode = floorBST(root, key);
+    if (floorNode)
+        cout << "Floor of " << key << " in BST is: " << floorNode->data << endl;
     else
-        cout << "Ceil does not exist for " << key << " in BST." << endl;
+        cout << "Floor does not exist for " << key << " in BST." << endl;
 
     return 0;
 }
@@ -108,10 +108,10 @@ int main() {
 ================================================================================
 Final Notes:
 ================================================================================
-- Ceil: smallest value >= key in BST.
+- Floor: largest value <= key in BST.
 - Iterative approach: O(h) time, O(1) space.
 - Recursive approach: O(h) time, O(h) recursion stack.
-- BST property allows moving left/right efficiently to find ceil.
-- If no node >= key exists, returns nullptr.
+- BST property allows efficient traversal to find floor.
+- If no node <= key exists, returns nullptr.
 ================================================================================
 */
