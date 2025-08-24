@@ -1,36 +1,52 @@
 // Vectors offer many member functions to manage elements efficiently.
 // This example demonstrates different ways of declaring vectors and uses the following functions:
-// - size(): Returns the number of elements in the vector.
-// - push_back(): Adds an element at the end of the vector.
-// - pop_back(): Removes the last element from the vector.
-// - front(): Returns the first element of the vector.
-// - back(): Returns the last element of the vector.
-// - at(): Provides access to an element with bounds checking.
+//      - size(): Returns the number of elements in the vector.
+//      - push_back(): Adds an element at the end of the vector.
+//      - pop_back(): Removes the last element from the vector.
+//      - front(): Returns the first element of the vector.
+//      - back(): Returns the last element of the vector.
+//      - at(): Provides access to an element with bounds checking.
 
 
 
-//array--static allocation(during compile time)
-//     --size is fixed
-//      --stores in stack
-//vector--dynamic allocation(during run time)
-//      --scalable
-//      -- stores in heap
+//  array--static allocation(during compile time)
+//          --size is fixed
+//          --stores in stack
+//  vector--dynamic allocation(during run time)
+//          --scalable
+//          -- stores in heap
+
+//  ------------------------------------------------------------------
+//  Stack vs Heap
+//  --------------------------------------------------------------------
+//  Stack:
+//      - Faster access
+//      - Limited size (usually a few MBs)
+//      - Stores local variables and function call information
+//      - Automatically managed (memory is freed when variables go out of scope)
+//  Heap:
+//      - Slower access due to pointer dereferencing
+//      - Much larger size (limited by system memory)
+//      - Used for dynamic memory allocation (e.g., using new or malloc)
+//      - Requires manual management (need to free memory to avoid leaks)
+//  -----------------------------------------------------------------------
+
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
 int main() {
-    // 1. Declaring an empty vector of integers
+    // Declaring an empty vector
     vector<int> vec1;
 
-    // 2. Declaring a vector with a predefined size and initial value (size 5, all elements 0)
+    // Declaring a vector with a predefined size and initial value (size 5, all elements 0)
     vector<int> vec2(5, 0);
 
-    // 3. Declaring a vector using an initializer list
+    // Declaring a vector using an initializer list
     vector<int> vec3 = {10, 20, 30, 40, 50};
 
-    // 4. Declaring a vector from an array
+    // Declaring a vector from an array
     int arr[] = {1, 2, 3, 4, 5};
     vector<int> vec4(arr, arr + 5);
 
