@@ -2,9 +2,6 @@
 using namespace std;
 
 /*
-================================================================================
-Problem Statement:
-================================================================================
 Build a simple binary tree and verify it using a **Preorder Traversal** (Root → Left → Right).
 
 Given a binary tree, implement:
@@ -21,9 +18,10 @@ Example Tree:
 
 Expected Preorder Output: 1 2 4 5 3
 
-================================================================================
+
 Intuition / Approach:
-================================================================================
+- Use a struct to define a tree node with data and pointers to left and right children.
+- Manually create nodes and link them to form the tree. 
 1. Each node contains:
     - int data
     - Node* left
@@ -42,7 +40,7 @@ Time Complexity: O(N)
 Space Complexity: O(H)
 - H = height of the tree
 - Recursion stack can hold up to H nodes.
-================================================================================
+
 */
 
 // ---------------------------

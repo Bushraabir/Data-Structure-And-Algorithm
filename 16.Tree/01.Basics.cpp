@@ -5,9 +5,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// ----------------------------------------------------
+
 //  Definition of a Tree Node
-// ----------------------------------------------------
 struct TreeNode {
     int val;            // Value of the node
     TreeNode* left;     // Pointer to left child
@@ -21,19 +20,18 @@ struct TreeNode {
 
 /*
 ------------------------------------------------------
-# Key Terminology in Trees:
-------------------------------------------------------
-1. Root       -> The topmost node of the tree.
-2. Children   -> Nodes directly connected below a parent.
-3. Leaf Node  -> A node with NO children.
-4. Subtree    -> Any node with all its descendants.
-5. Ancestors  -> All nodes on the path from root to the node.
+ Key Terminology in Trees:
+    1. Root       -> The topmost node of the tree.
+    2. Children   -> Nodes directly connected below a parent.
+    3. Leaf Node  -> A node with NO children.
+    4. Subtree    -> Any node with all its descendants.
+    5. Ancestors  -> All nodes on the path from root to the node.
 ------------------------------------------------------
 */
 
-// ----------------------------------------------------
-// # Types of Binary Trees (Explained with Notes)
-// ----------------------------------------------------
+
+//  Types of Binary Trees
+
 
 /*
 1. Full Binary Tree:
@@ -46,6 +44,7 @@ struct TreeNode {
          / \   
         4   5
 */
+
 bool isFullBinary(TreeNode* root) {
     if (root == NULL) return true;
     if (!root->left && !root->right) return true;  // leaf node
@@ -64,7 +63,7 @@ bool isFullBinary(TreeNode* root) {
            / \
           2   3
          / \  /
-        4  5 6     ✅ Complete
+        4  5 6     -> Complete
 */
 bool isCompleteBinary(TreeNode* root) {
     if (!root) return true;
@@ -95,7 +94,7 @@ bool isCompleteBinary(TreeNode* root) {
            / \
           2   3
          / \ / \
-        4  5 6  7   ✅ Perfect
+        4  5 6  7   -> Perfect
 */
 int depth(TreeNode* node) {
     int d = 0;
@@ -152,9 +151,7 @@ bool isSkewed(TreeNode* root) {
     return isSkewed(root->left) || isSkewed(root->right);
 }
 
-// ----------------------------------------------------
-// 🔹 Main Function to Test
-// ----------------------------------------------------
+ //  Main Function to Test
 int main() {
     /*
        Example Tree:
