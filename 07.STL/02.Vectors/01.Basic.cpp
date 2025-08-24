@@ -8,16 +8,16 @@
 using namespace std;
 
 int main() {
-    // Create a vector of integers
+    // Declaring a vector of integers
     vector<int> vec;
 
-    // Add elements to the vector using push_back
+    // Add elements
     vec.push_back(10);
     vec.push_back(20);
     vec.push_back(30);
     vec.push_back(40);
 
-    // For each loop to prinjt the vector
+    // For each loop to print the vector
     cout << "Vector elements: ";
     for (int num : vec) {
         cout << num << " ";
@@ -33,7 +33,7 @@ int main() {
     // Display vector elements after removal
     cout << "Vector after pop_back: ";
 
-    // for each loop to prinjt the vector
+    // print vector using index-based for loop
     for (int i : vec) {
         cout << i << " ";
     }
