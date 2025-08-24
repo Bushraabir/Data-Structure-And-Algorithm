@@ -1,6 +1,8 @@
 // leetcode 136 
 /*
     int singleNumber(vector<int>& nums) { -->due to & sign the original vector is passed by reference
+                                             passing by reference is more efficient than passing by value
+                                             because it avoids copying the entire vector.
                                           --> if there were no & sign, it would have passed by value
         
     }
@@ -12,10 +14,11 @@
 
 //
 // Explanation:
+
 // The XOR (^) operation has several useful properties:
-// 1. a ^ a = 0: XORing two identical numbers results in zero.
-// 2. a ^ 0 = a: XORing a number with zero results in the number itself.
-// 3. XOR is both commutative and associative, meaning the order of operations does not matter.
+//       1. a ^ a = 0: XORing two identical numbers results in zero.
+//       2. a ^ 0 = a: XORing a number with zero results in the number itself.
+//       3. XOR is both commutative and associative, meaning the order of operations does not matter.
 // By XORing all the numbers in the array, the numbers that appear in pairs cancel out,
 // leaving only the number that appears once.
 
