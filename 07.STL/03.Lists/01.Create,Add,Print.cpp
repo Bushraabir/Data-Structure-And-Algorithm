@@ -1,5 +1,5 @@
-#include <iostream> 
-#include <list>     
+#include <iostream>
+#include <list>
 
 using namespace std;
 
@@ -39,3 +39,29 @@ int main() {
 
     return 0;
 }
+
+/*
+Arrays, vectors, and lists differ mainly in memory layout and performance.
+
+1. Array:
+   - Fixed-size, contiguous block of memory.
+   - Random access is fast → O(1).
+   - Insertion or deletion in the middle is costly → O(N), since elements must be shifted.
+
+2. Vector (std::vector):
+   - Dynamic array (can grow/shrink).
+   - Also contiguous in memory.
+   - Random access is O(1).
+   - Insertions/deletions at the end are efficient → amortized O(1).
+   - Insertions/deletions in the middle are costly → O(N).
+
+3. List (std::list):
+   - Implemented as a doubly linked list (non-contiguous memory).
+   - Random access is slow → O(N).
+   - Insertions/deletions at any position (with an iterator) are fast → O(1).
+
+Summary:
+- Use arrays when the size is fixed and you need very fast random access.
+- Use vectors when you need dynamic resizing with fast random access.
+- Use lists when frequent insertions or deletions in the middle are required.
+*/
