@@ -1,10 +1,11 @@
 /*
-Greedy Algorithm – Jump Game Problem
-
-Intuition & Logic:
+Jump Game Problem
 - Given an array where each element represents the max jump length from that position.
 - Start at index 0, goal is to reach the last index.
 - Challenge: If stuck on a zero or can't reach a position before a zero, you fail.
+
+Intuition & Logic:
+
 - Greedy choice:
     - Track the farthest index reachable at any point.
     - If current index exceeds max reachable, return false (stuck).
@@ -30,8 +31,6 @@ TIME & SPACE COMPLEXITY:
 
 */
 
-/* -------------------- JUMP GAME IMPLEMENTATION -------------------- */
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -48,7 +47,6 @@ bool canJump(vector<int>& nums) {
     return true;
 }
 
-/* -------------------- MAIN FUNCTION -------------------- */
 
 int main() {
     vector<int> nums1 = {2, 1, 3, 1, 1, 0, 2};

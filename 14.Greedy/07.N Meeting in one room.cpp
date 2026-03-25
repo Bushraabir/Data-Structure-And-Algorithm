@@ -1,17 +1,31 @@
 /*
 Greedy Algorithm – N Meetings in One Room (Maximize Number of Meetings)
-
-Intuition & Logic:
 - Given N meetings, each with start and end times.
 - Only one meeting room available, so meetings cannot overlap.
 - Goal: schedule the maximum number of meetings without overlap.
-- Greedy choice:
-    - Sort meetings by their earliest finishing time (end time).
-    - Always pick the meeting that ends earliest to free the room sooner.
-    - This allows scheduling more meetings afterwards.
-- This approach guarantees the maximum number of non-overlapping meetings.
 
-Problem Example:
+Intuition & Logic (Detailed Notes):
+1. Greedy Choice:
+   - Always pick the meeting that **finishes earliest**. Why?
+     - Picking earliest finishing meetings frees the room sooner for future meetings.
+     - This local decision ensures globally maximum meetings can be scheduled.
+   - Sort all meetings by ascending end time to facilitate greedy selection.
+2. Steps:
+   - Create Meeting objects with start, end, and original index.
+   - Sort meetings by end time.
+   - Initialize:
+     - count = 1 (first meeting always picked)
+     - freeTime = end time of first meeting
+     - order list = store scheduled meeting indices
+   - Iterate over remaining meetings:
+     - If meeting.start >= freeTime → schedule it
+       - Increment count, update freeTime = meeting.end
+       - Append meeting index to order
+3. Complexity:
+   - Time: O(N log N) → sorting dominates
+   - Space: O(N) → storing meetings and result order
+
+Example:
 Meetings (sorted by end time):
 ID: 1, Start: 1, End: 2
 ID: 4, Start: 3, End: 4
@@ -24,36 +38,18 @@ Schedule by picking earliest finishing meetings compatible with previous:
 - Meeting 4 (starts 3 ≥ 2)
 - Meeting 2 (starts 5 ≥ 4)
 - Meeting 3 (starts 8 ≥ 7)
-- Meeting 5 (starts 8 overlaps with Meeting 3 end at 9, so cannot pick both)
+- Meeting 5 overlaps with Meeting 3 → cannot pick
 
 Max meetings = 4 with order: 1, 4, 2, 3
-
-Algorithm:
-- Create meeting objects with start, end, and original index.
-- Sort meetings by ascending end time.
-- Initialize count = 1 and add first meeting’s index to order list.
-- Set freeTime = end time of first meeting.
-- For each subsequent meeting:
-    - If meeting.start >= freeTime, schedule it:
-        - count++, update freeTime to meeting.end.
-        - Append meeting index to order list.
-- Return count and order list.
-
-TIME & SPACE COMPLEXITY:
-- Time: O(N log N) due to sorting.
-- Space: O(N) for storing meeting data and result order.
-
 */
-
-/* -------------------- N MEETINGS IN ONE ROOM IMPLEMENTATION -------------------- */
 
 #include <bits/stdc++.h>
 using namespace std;
 
 struct Meeting {
-    int start;
-    int end;
-    int index; // original position
+    int start;  // Meeting start time
+    int end;    // Meeting end time
+    int index;  // Original position (1-based ID)
 };
 
 // Comparator to sort meetings by end time ascending
@@ -67,18 +63,19 @@ pair<int, vector<int>> maxMeetings(vector<int>& start, vector<int>& end) {
 
     // Populate meetings with start, end, and index
     for (int i = 0; i < n; i++) {
-        meetings[i] = {start[i], end[i], i + 1}; // 1-based indexing for meeting IDs
+        meetings[i] = {start[i], end[i], i + 1}; // 1-based indexing
     }
 
-    // Sort meetings by their finishing times
+    // Step 1: Sort meetings by their finishing times
     sort(meetings.begin(), meetings.end(), cmp);
 
     vector<int> order;
+    // Pick first meeting
     order.push_back(meetings[0].index);
     int count = 1;
     int freeTime = meetings[0].end;
 
-    // Schedule meetings greedily
+    // Step 2: Schedule remaining meetings greedily
     for (int i = 1; i < n; i++) {
         if (meetings[i].start >= freeTime) {
             count++;
@@ -90,7 +87,6 @@ pair<int, vector<int>> maxMeetings(vector<int>& start, vector<int>& end) {
     return {count, order};
 }
 
-/* -------------------- MAIN FUNCTION -------------------- */
 
 int main() {
     vector<int> startTimes = {1, 5, 8, 3, 8};

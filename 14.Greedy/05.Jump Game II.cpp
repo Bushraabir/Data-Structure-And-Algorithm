@@ -1,10 +1,12 @@
 /*
-Greedy Algorithm – Jump Game II (Minimum Number of Jumps)
+Jump Game II (Minimum Number of Jumps)
 
-Intuition & Logic:
 - Given an array where each element represents max jump length from that position.
 - Start at index 0, goal is to reach last index using minimum jumps.
 - It is guaranteed you can reach the end.
+
+Intuition & Logic:
+
 - Greedy choice:
     - Track the current range of indices reachable with the current number of jumps ([L, R]).
     - Within this range, find the farthest position reachable by one more jump.
@@ -36,7 +38,6 @@ TIME & SPACE COMPLEXITY:
 
 */
 
-/* -------------------- JUMP GAME II IMPLEMENTATION -------------------- */
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -58,7 +59,6 @@ int jump(vector<int>& nums) {
     return jumps;
 }
 
-/* -------------------- MAIN FUNCTION -------------------- */
 
 int main() {
     vector<int> nums1 = {2, 3, 1, 1, 4};

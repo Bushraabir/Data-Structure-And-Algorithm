@@ -1,11 +1,13 @@
 /*
-Greedy Algorithm – Lemonade Change Problem
+Lemonade Change Problem
 
-Intuition & Logic:
 - Each lemonade costs $5.
 - Customers pay with $5, $10, or $20 bills.
 - We start with zero bills of any denomination.
 - Goal: Determine if we can give correct change to every customer in the order they arrive.
+
+
+Intuition & Logic:
 - Greedy choice:
     - Always give change using the largest denominations possible to save smaller bills for future customers.
     - Specifically, for a $20 bill, prefer giving one $10 and one $5 as change over three $5 bills.
@@ -40,7 +42,7 @@ TIME & SPACE COMPLEXITY:
 
 */
 
-/* -------------------- LEMONADE CHANGE IMPLEMENTATION -------------------- */
+
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -71,7 +73,7 @@ bool lemonadeChange(vector<int>& bills) {
     return true;
 }
 
-/* -------------------- MAIN FUNCTION -------------------- */
+
 
 int main() {
     vector<int> bills1 = {5, 5, 5, 10, 20};

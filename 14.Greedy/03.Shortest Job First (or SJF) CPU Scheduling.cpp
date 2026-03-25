@@ -1,9 +1,10 @@
 /*
-Greedy Algorithm – Shortest Job First (SJF) CPU Scheduling
-
-Intuition & Logic:
+ Shortest Job First (SJF) CPU Scheduling
 - Given N processes with known execution times, all arriving at time 0 simultaneously.
 - Goal: Schedule processes to minimize average waiting time.
+
+
+Intuition & Logic:
 - SJF scheduling always picks the shortest job next, a greedy strategy to reduce waiting.
 - Sort processes by execution time in ascending order.
 - Waiting time for a process = total execution time of all previous processes.
@@ -39,8 +40,6 @@ TIME & SPACE COMPLEXITY:
 
 */
 
-/* -------------------- SJF CPU SCHEDULING IMPLEMENTATION -------------------- */
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -56,8 +55,6 @@ int averageWaitingTime(vector<int>& processes) {
 
     return total_wait / (int)processes.size(); // truncated average waiting time
 }
-
-/* -------------------- MAIN FUNCTION -------------------- */
 
 int main() {
     vector<int> processes = {4, 3, 7, 1, 2};

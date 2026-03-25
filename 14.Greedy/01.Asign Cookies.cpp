@@ -1,10 +1,10 @@
-/*
-Greedy Algorithm – Assign Cookies Problem
+/* Assign Cookies Problem
+    We have N children, each with a greed factor (minimum cookie size to be satisfied).
+    We have M cookies, each with a certain size.
+    Maximize the number of children satisfied by giving each child at most one cookie.
 
 Intuition & Logic:
-- We have N children, each with a greed factor (minimum cookie size to be satisfied).
-- We have M cookies, each with a certain size.
-- Goal: Maximize the number of children satisfied by giving each child at most one cookie.
+
 - Greedy choice:
     - Assign the smallest cookie that can satisfy a child’s greed to that child.
     - This ensures bigger cookies are reserved for greedier children.
@@ -34,7 +34,7 @@ TIME & SPACE COMPLEXITY:
 
 */
 
-/* -------------------- ASSIGN COOKIES IMPLEMENTATION -------------------- */
+
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -65,7 +65,7 @@ int findContentChildren(vector<int>& greed, vector<int>& cookies) {
     return satisfiedCount;
 }
 
-/* -------------------- MAIN FUNCTION -------------------- */
+
 
 int main() {
     vector<int> greed = {1, 5, 3, 3, 4};

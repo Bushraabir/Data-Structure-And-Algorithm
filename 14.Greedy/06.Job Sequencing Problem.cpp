@@ -1,17 +1,25 @@
 /*
 Greedy Algorithm – Job Sequencing Problem (Maximize Total Profit)
-
-Intuition & Logic:
 - Given jobs with deadlines and profits, each job takes exactly one day.
 - Only one job can be scheduled per day.
 - Goal: maximize total profit by scheduling jobs before their deadlines.
-- Greedy choice:
-    - Sort jobs by descending profit to prioritize high-profit jobs.
-    - For each job, schedule it on the latest available day before its deadline.
-    - Scheduling jobs as late as possible frees earlier days for other jobs with tighter deadlines.
-- This approach ensures maximum total profit and maximum jobs done.
 
-Problem Example:
+Intuition & Logic (Detailed Notes):
+1. Greedy Choice:
+   - Always pick the job with the highest profit first. This ensures we prioritize high-value work.
+   - Place each job in the **latest possible free slot** before its deadline.
+     - Why latest? It leaves earlier days available for jobs with tighter deadlines.
+   - This simple local decision (highest profit first) leads to a global optimal solution.
+2. Steps:
+   - Sort jobs by profit descending → ensures greedy selection.
+   - Track schedule days with an array, initially all free (-1).
+   - For each job, scan backward from its deadline to find a free day.
+   - Place the job in the first free slot found, update profit and count.
+3. Complexity:
+   - Time: O(N log N + N * maxDeadline) → sorting + scanning slots.
+   - Space: O(maxDeadline) → schedule array.
+
+Example:
 Jobs (sorted by profit):
 ID: J6, Profit: 80, Deadline: 2
 ID: J3, Profit: 70, Deadline: 6
@@ -33,34 +41,18 @@ Schedule by placing each job in the latest free slot before its deadline:
 - J7 cannot be scheduled
 
 Max profit = 342 with 7 jobs scheduled.
-
-Algorithm:
-- Sort jobs in descending order by profit.
-- Find maxDeadline among jobs.
-- Initialize schedule array (size maxDeadline+1) with -1 (indicating free day).
-- For each job in sorted order:
-    - Check from job.deadline down to day 1 for a free slot.
-    - If free slot found, assign job and update total profit and count.
-- Return total jobs scheduled and total profit.
-
-TIME & SPACE COMPLEXITY:
-- Time: O(N log N + N * maxDeadline), due to sorting and scheduling.
-- Space: O(maxDeadline), for the schedule array.
-
 */
-
-/* -------------------- JOB SEQUENCING IMPLEMENTATION -------------------- */
 
 #include <bits/stdc++.h>
 using namespace std;
 
 struct Job {
-    int id;
-    int deadline;
-    int profit;
+    int id;       // Unique job ID
+    int deadline; // Last day the job can be scheduled
+    int profit;   // Profit if the job is completed
 };
 
-// Comparator to sort jobs by descending profit
+// Comparator: sort jobs by descending profit
 bool cmp(Job a, Job b) {
     return a.profit > b.profit;
 }
@@ -71,24 +63,25 @@ pair<int, int> jobSequencing(vector<Job>& jobs) {
     // Step 1: Sort jobs by profit descending
     sort(jobs.begin(), jobs.end(), cmp);
 
-    // Step 2: Find max deadline
+    // Step 2: Find the maximum deadline to know schedule length
     int maxDeadline = 0;
     for (const Job& job : jobs) {
         maxDeadline = max(maxDeadline, job.deadline);
     }
 
-    // Step 3: Initialize schedule array to track free days (-1 means free)
+    // Step 3: Initialize schedule array to track free days
+    // -1 indicates the day is free
     vector<int> schedule(maxDeadline + 1, -1);
 
     int totalProfit = 0;
     int jobsCount = 0;
 
-    // Step 4: Schedule jobs
+    // Step 4: Schedule jobs using greedy approach
     for (const Job& job : jobs) {
-        // Try to schedule job on latest possible day before deadline
+        // Try to schedule job on the latest possible day before its deadline
         for (int day = job.deadline; day > 0; day--) {
-            if (schedule[day] == -1) {
-                schedule[day] = job.id;
+            if (schedule[day] == -1) { // Free slot found
+                schedule[day] = job.id; // Assign job
                 totalProfit += job.profit;
                 jobsCount++;
                 break; // Job scheduled, move to next
@@ -96,10 +89,9 @@ pair<int, int> jobSequencing(vector<Job>& jobs) {
         }
     }
 
+    // Step 5: Return total jobs scheduled and total profit
     return {jobsCount, totalProfit};
 }
-
-/* -------------------- MAIN FUNCTION -------------------- */
 
 int main() {
     vector<Job> jobs = {
