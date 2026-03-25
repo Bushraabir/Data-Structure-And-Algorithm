@@ -6,6 +6,48 @@ rotate the array to the left by k steps.
 #include <iostream>
 using namespace std;
 
+
+
+
+
+
+
+/*
+
+Intuition:
+    Left rotation means the first k elements should move to the end.
+
+    Instead of shifting elements one by one (which would be O(n*k)),
+    we use the reverse technique.
+
+Process:
+    1. Reverse the first k elements
+    2. Reverse the remaining n-k elements
+    3. Reverse the entire array
+
+Why this works:
+
+    Original:
+        1 2 | 3 4 5 6
+
+    Step 1 (reverse first k):
+        2 1 | 3 4 5 6
+
+    Step 2 (reverse remaining):
+        2 1 | 6 5 4 3
+
+    Step 3 (reverse whole array):
+        3 4 5 6 1 2
+
+    Now the array is rotated left by k positions.
+
+This trick works because reversing rearranges segments without needing extra memory.
+*/
+
+
+
+
+
 // Reverse part of the array from index 'start' to 'end'
 void reverse(int arr[], int start, int end) {
     while (start < end) {

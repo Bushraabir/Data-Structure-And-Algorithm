@@ -17,8 +17,9 @@ void leftRotateByOne(int arr[], int n) {
 
 int main() {
     int arr[] = {1, 2, 3, 4, 5};
-    int n = sizeof(arr) / sizeof(arr[0]);
-
+    int n = sizeof(arr) / sizeof(arr[0]); // Calculate the number of elements in the array by dividing the total size of the array by the size of a single element
+                                        // size= total size/ unit size
+   
     cout << "Original array: ";
     for (int i = 0; i < n; i++) {
         cout << arr[i] << " ";
