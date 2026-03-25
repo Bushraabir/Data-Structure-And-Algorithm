@@ -5,7 +5,8 @@
 
 #include<iostream>
 using namespace std;
-int sum(int n){
+
+int sum(int n){ // the basic syntax of a function is: return_type function_name(parameters)
     int sum=0;
     for(int i=1;i<=n;i++){
         sum=sum+i;

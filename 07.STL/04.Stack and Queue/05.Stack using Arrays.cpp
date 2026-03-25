@@ -43,7 +43,16 @@ public:
         delete[] stack;
     }
 
-    // Push: Add element to the top of the stack
+
+/*
+~Stack -> Destructor to free allocated memory
+delete[] stack -> Free the dynamically allocated array that has been declared using new int[capacity]
+
+    ****If you forget to do this, it causes a memory leak (memory that’s never released until program ends).****
+
+*/
+
+    // Push-> Adding element to the top of the stack
     void push(int value) {
         if (top == capacity - 1) {
             cout << "Stack Overflow! Cannot push " << value << endl;
@@ -53,7 +62,7 @@ public:
         stack[top] = value;
     }
 
-    // Pop: Remove element from the top of the stack
+    // Pop-> Remove element from the top of the stack
     void pop() {
         if (top == -1) {
             cout << "Stack Underflow! Cannot pop from empty stack." << endl;
@@ -62,7 +71,7 @@ public:
         top--;
     }
 
-    // Peek: Return the top element without removing it
+    // Peek-> Return the top element without removing it
     int peek() {
         if (top == -1) {
             cout << "Stack is empty. No top element." << endl;
@@ -71,7 +80,7 @@ public:
         return stack[top];
     }
 
-    // Size: Number of elements currently in the stack
+    // Size-> Number of elements currently in the stack
     int size() {
         return top + 1;
     }

@@ -1,3 +1,6 @@
+// Stack follows LIFO (Last In First Out) principle
+
+
 #include <iostream>
 #include <stack>
 using namespace std;
@@ -16,14 +19,14 @@ void showStackInfo(const string& message, const stack<int>& s) {
 }
 
 int main() {
-    // Re-initialize stack with multiple elements
+    // initialize stack 
     stack<int> St;
     St.push(10);
     St.push(20);
     St.emplace(30);
     St.push(40);
 
-    // Removing elements using pop() (LIFO behavior)
+    // Removing elements (LIFO behavior)
     cout << "\nDemonstrating LIFO behavior with pop():" << endl;
 
     cout << "Popping top element (" << St.top() << ")" << endl;

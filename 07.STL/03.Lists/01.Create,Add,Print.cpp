@@ -20,7 +20,7 @@ int main() {
 
     // Adding elements to the list
 
-    // Adds to the end of the list
+    // Adds to the end
     myList.push_back(10);
     myList.push_back(20);
     printList(myList, "List after push_back(10) and push_back(20)");
@@ -29,7 +29,7 @@ int main() {
     myList.emplace_back(30);
     printList(myList, "List after emplace_back(30)");
 
-    // Adds to the beginning of the list
+    // Adds to the beginning 
     myList.push_front(5);
     printList(myList, "List after push_front(5)");
 
@@ -43,25 +43,25 @@ int main() {
 /*
 Arrays, vectors, and lists differ mainly in memory layout and performance.
 
-1. Array:
-   - Fixed-size, contiguous block of memory.
-   - Random access is fast → O(1).
-   - Insertion or deletion in the middle is costly → O(N), since elements must be shifted.
+    1. Array:
+       - Fixed-size, contiguous block of memory.
+       - Random access is fast → O(1).
+       - Insertion or deletion in the middle is costly → O(N), since elements must be shifted.
 
-2. Vector (std::vector):
-   - Dynamic array (can grow/shrink).
-   - Also contiguous in memory.
-   - Random access is O(1).
-   - Insertions/deletions at the end are efficient → amortized O(1).
-   - Insertions/deletions in the middle are costly → O(N).
+    2. Vector (std::vector):
+       - Dynamic array (can grow/shrink).
+       - Also contiguous in memory.
+       - Random access is O(1).
+       - Insertions/deletions at the end are efficient → amortized O(1).
+       - Insertions/deletions in the middle are costly → O(N).
 
-3. List (std::list):
-   - Implemented as a doubly linked list (non-contiguous memory).
-   - Random access is slow → O(N).
-   - Insertions/deletions at any position (with an iterator) are fast → O(1).
+    3. List (std::list):
+       - Implemented as a doubly linked list (non-contiguous memory).
+       - Random access is slow → O(N).
+       - Insertions/deletions at any position (with an iterator) are fast → O(1).
 
-Summary:
-- Use arrays when the size is fixed and you need very fast random access.
-- Use vectors when you need dynamic resizing with fast random access.
-- Use lists when frequent insertions or deletions in the middle are required.
+    Summary:
+        - Use arrays when the size is fixed and you need very fast random access.
+        - Use vectors when you need dynamic resizing with fast random access.
+        - Use lists when frequent insertions or deletions in the middle are required.
 */
