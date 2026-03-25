@@ -40,3 +40,36 @@ int main() {
 }
 // time complexity: O(n)
 // space complexity: O(1)
+
+
+
+/*
+
+
+Intuition:
+    Instead of swapping elements many times, we use a two-pointer idea.
+
+    Think of the array as having two regions:
+        1. The front part where we will store all non-zero elements.
+        2. The remaining part where zeroes will eventually go.
+
+    Steps:
+        1. Traverse the array once.
+        2. Every time we see a non-zero element, place it at the current
+           position of pointer 'j' (which tracks the next free spot for
+            non-zero elements).
+        3. Increment 'j' after placing the element.
+
+            After this traversal:
+                - All non-zero elements are compacted at the beginning.
+                - Their relative order is preserved.
+                - 'j' points to the first index where a zero should be placed.
+
+        4. Fill the rest of the array (from j to n-1) with zeroes.
+
+    Key idea:
+        We do not move zeroes explicitly.  
+        We only move non-zero elements forward and then fill the rest with zeros.
+
+
+*/
