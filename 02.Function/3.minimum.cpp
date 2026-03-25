@@ -6,7 +6,7 @@
 using namespace std;
 
 int min(int a, int b) {
-    return (a < b) ? a : b;
+    return (a < b) ? a : b; // This is a ternary operator that returns 'a' if 'a' is less than 'b', otherwise it returns 'b'.
 }
 
 int main() {
