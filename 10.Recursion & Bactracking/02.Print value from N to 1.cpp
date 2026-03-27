@@ -23,3 +23,8 @@ int main() {
 
     return 0;
 }
+
+
+// Time Complexity: O(n) — Each number from N to 1 is printed once, and the function is called recursively N times until it reaches the base case (n == 0).
+// Space Complexity: O(n) — The maximum depth of the recursion is N, 
+// which means there will be N function calls on the call stack at the worst case before it starts returning back up.
