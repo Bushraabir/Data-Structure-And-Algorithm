@@ -5,8 +5,8 @@ Given an array arr of n elements. The task is to reverse the given array. The re
 #include <bits/stdc++.h>
 using namespace std;
 
-int reverseArray(int arr[], int start , int end){
-    if (start >= end) return 0; // Base case: if start index is greater than or equal to end index, return 0
+void reverseArray(int arr[], int start , int end){
+    if (start >= end) return; // Base case: if start index is greater than or equal to end index, return
     swap(arr[start], arr[end]); // Swap the elements at start and end indices
     reverseArray(arr, start + 1, end - 1); // Recursive call with incremented start and decremented end
      
@@ -37,3 +37,5 @@ int main() {
 
 // Time complexity: O(n/2) ≈ O(n) (Each element is swapped only once in the recursive calls)
 // Space complexity: O(n) (Due to recursion stack calls; if implemented iteratively, space would be O(1))
+
+
