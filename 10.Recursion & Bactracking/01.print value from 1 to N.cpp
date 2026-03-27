@@ -3,6 +3,12 @@ Use recursion to print numbers from 1 to N.
 You are given an integer N. You need to print all the numbers from 1 to N
 */
 
+
+// in recursion we have two main components: the base case and the recursive case.
+// 1. Base Case: This is the condition under which the recursion will stop. 
+// 2. Recursive Case: This is where the function calls itself with modified arguments to approach the base case.
+
+
 #include <iostream>
 using namespace std;
 
