@@ -8,6 +8,8 @@ using namespace std;
 int sumOfFirstN(int n) {
     if (n == 0) return 0; // Base case: if n is 0, return 0
     return n + sumOfFirstN(n - 1); // Recursive call with n-1
+                                    // n + sumOfFirstN(n - 1) means  1 + 2 + 3 + ... + n-1 + n
+                                    
 }
 
 int main() {
