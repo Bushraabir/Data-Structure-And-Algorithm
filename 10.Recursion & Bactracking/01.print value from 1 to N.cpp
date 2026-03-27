@@ -15,7 +15,8 @@ using namespace std;
 int printUptoN(int n) {
     if (n == 0) return 0; // Base case: if n is 0, return 0
     printUptoN(n - 1); // Recursive call with n-1
-    cout << n << " "; 
+    cout << n << " "; // we are printing after the recusive call because we want to print in the correct order from 1 to N
+                     // If we printed before the recursive call, we would print in reverse order from N to 1.
    
 }
 
