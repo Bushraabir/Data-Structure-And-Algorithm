@@ -1,7 +1,4 @@
-// 1. Problem Introduction
-// -----------------------
-//
-// Goal: Implement a **Trie (Prefix Tree)** to efficiently store and search words.
+// Implement a **Trie (Prefix Tree)** to efficiently store and search words.
 //
 // Trie Properties:
 // - Tree-like structure for storing strings
