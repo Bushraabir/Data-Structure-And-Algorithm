@@ -69,10 +69,10 @@ void printSubsequences(int index, vector<int>& ds, vector<int>& arr, int n) {
     ds.push_back(arr[index]);
     printSubsequences(index + 1, ds, arr, n);
 
-    // Backtrack: remove the last taken element
+    // Not take the current element (backtrack)
     ds.pop_back();
 
-    // Not take the current element
+    // Move to the next element without including the current one
     printSubsequences(index + 1, ds, arr, n);
 }
 
