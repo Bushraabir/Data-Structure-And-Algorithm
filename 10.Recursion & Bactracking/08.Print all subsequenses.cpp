@@ -39,7 +39,7 @@ using namespace std;
 
     tree structure for arr = [3, 1, 2]:
 
-                            []
+                             []
                           /     \
                         3        []
                       / \      / \
