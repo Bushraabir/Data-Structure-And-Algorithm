@@ -5,22 +5,22 @@ You are given an array of integers. Your task is to print **all possible subsequ
 (including the empty one) by using recursion.
 
 A subsequence:
-- Follows the **original order** of elements (i.e., you cannot rearrange)
+- Follows the original order of elements (you cannot rearrange)
 - Can be contiguous or non-contiguous
-- Total number of subsequences for size `n` = 2^n
+- Total number of subsequences for size n = 2^n
 
 Example:
 Input: arr = [3, 1, 2]
 Output:
-{}
-{2}
-{1}
-{1 2}
-{3}
-{3 2}
-{3 1}
-{3 1 2}
-(Printed in recursive order)
+        {}
+        {2}
+        {1}
+        {1 2}
+        {3}
+        {3 2}
+        {3 1}
+        {3 1 2}
+                    (Printed in recursive order)
 
 Time Complexity: O(2^n * n)
 Space Complexity: O(n) recursion depth
@@ -36,6 +36,19 @@ using namespace std;
 - Each decision forms a branch in the recursion tree.
 - To backtrack after "taking" an element, we pop it from the current path.
 - Passing the 'ds' (data structure) by reference avoids unnecessary copies.
+
+    tree structure for arr = [3, 1, 2]:
+
+                            []
+                          /     \
+                        3        []
+                      / \      / \
+                    1   []    1  []
+                   / \       / \
+                 2    []    2  []
+                / \        / \
+              []   []     [] []
+
 */
 
 void printSubsequences(int index, vector<int>& ds, vector<int>& arr, int n) {
