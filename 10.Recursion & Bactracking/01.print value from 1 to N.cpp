@@ -20,6 +20,20 @@ int printUptoN(int n) {
    
 }
 
+// we could have also make it as a void function and just print the value of n without returning anything.
+
+/*
+
+void printUptoN(int n) {
+    if (n == 0) return; // Base case: if n is 0, return
+    printUptoN(n - 1); // Recursive call with n-1
+    cout << n << " "; // we are printing after the recusive call because we want to print in the correct order from 1 to N
+                     // If we printed before the recursive call, we would print in reverse order from N to 1.
+}
+
+*/
+
+
 int main() {
     int n;
     cout << "Enter an integer: ";
