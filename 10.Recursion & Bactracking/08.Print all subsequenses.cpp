@@ -51,9 +51,9 @@ using namespace std;
 
 */
 
-void printSubsequences(int index, vector<int>& ds, vector<int>& arr, int n) {
-    if (index == n) {
-        // Base case: we have considered all elements
+void printSubsequences(int index, vector<int>& ds, vector<int>& arr, int n) { // -> index: current index in arr, ds: current subsequence, arr: input array, n: size of arr
+    if (index == n) { // Base case: if we've considered all elements
+
         if (ds.size() == 0)
             cout << "{}"; // print empty subsequence
         else {
