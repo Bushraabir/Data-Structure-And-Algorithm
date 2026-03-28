@@ -32,7 +32,7 @@ I. Print All Subsequences with Sum = K
 - Recursively explore both choices: take or not take current element
 */
 
-void printAllSubsequences(int index, vector<int>& ds, int s, int k, vector<int>& arr, int n) {
+void printAllSubsequences(int index, vector<int>& ds, int s, int k, vector<int>& arr, int n) { // -> index: current index in arr, ds: current subsequence, s: current sum, k: target sum, arr: input array, n: size of arr
     if (index == n) {
         if (s == k) {
             // print the current subsequence
