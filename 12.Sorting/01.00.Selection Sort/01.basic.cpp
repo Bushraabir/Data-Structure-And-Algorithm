@@ -33,15 +33,15 @@ void selectionSort(vector<int>& arr) {
 
     // Outer loop traverses all positions one by one
     for (int i = 0; i < n - 1; i++) {
-        int minIndex = i; // Assume the current index has the minimum element
+        int minVal = i; // Assume the current index has the minimum element
 
         /*
          * Inner loop: Find the index of the minimum element
          * in the remaining unsorted part of the array.
          */
         for (int j = i + 1; j < n; j++) {
-            if (arr[j] < arr[minIndex]) {
-                minIndex = j; // Update minIndex if a smaller element is found
+            if (arr[j] < arr[minVal]) {
+                minVal = j; // Update minVal if a smaller element is found
             }
         }
 
@@ -49,7 +49,7 @@ void selectionSort(vector<int>& arr) {
          * Swap the found minimum element with the first element
          * of the unsorted part (if needed).
          */
-        swap(arr[i], arr[minIndex]); // O(1) operation
+        swap(arr[i], arr[minVal]); // O(1) operation
     }
 }
 

@@ -1,91 +1,68 @@
-/*  
-Problem: Organize Sales Data Using Merge Sort
+/* 
+Problem: Sort an Array Using Bubble Sort
 
-You are given the monthly sales figures (in thousands of dollars) of a company stored in an array.
-Your task is to sort these figures in ascending order using the Merge Sort algorithm. This problem
-will help you understand the divide-and-conquer strategy and recursive merging.
+You are given a list of elements represented as an array.  
+Your task is to sort the array in ascending order using the Bubble Sort algorithm.  
+This problem helps you understand one of the simplest sorting techniques where  
+larger elements gradually "bubble up" to their correct positions.
 
 Working Principle:
-- Divide the array into two halves.
-- Recursively sort each half.
-- Merge the sorted halves into a single sorted array.
+- Repeatedly traverse the array.
+- Compare adjacent elements and swap them if they are in the wrong order.
+- After each pass, the largest unsorted element moves to the end.
+- Reduce the range of comparison after each iteration.
+- Stop early if no swaps occur (optimization).
 
 Time Complexity:
-    - Best Case: O(N log N)
-    - Average Case: O(N log N)
-    - Worst Case: O(N log N)
+    - Best Case (Already Sorted): O(N)  [with optimization]
+    - Average Case: O(N^2)
+    - Worst Case (Reversely Sorted): O(N^2)
 
 Space Complexity:
-    - O(N) (Uses extra space for merging)
+    - O(1) (in-place sorting)
 
 Stable Sort: Yes
-Adaptive: No
+Adaptive: Yes (with swapped flag optimization)
 */
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-// Merge two sorted subarrays into one sorted array
-void merge(vector<int>& arr, int left, int mid, int right) {
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
+// Iterative Bubble Sort Function
+void bubbleSort(vector<int>& arr) {
+    int n = arr.size();
 
-    vector<int> L(n1), R(n2);
+    for (int i = 0; i < n - 1; i++) {
+        bool swapped = false;
 
-    for (int i = 0; i < n1; i++)
-        L[i] = arr[left + i];
-    for (int j = 0; j < n2; j++)
-        R[j] = arr[mid + 1 + j];
-
-    int i = 0, j = 0, k = left;
-
-    while (i < n1 && j < n2) {
-        if (L[i] <= R[j]) {
-            arr[k++] = L[i++];
-        } else {
-            arr[k++] = R[j++];
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(arr[j], arr[j + 1]);
+                swapped = true;
+            }
         }
-    }
 
-    while (i < n1) {
-        arr[k++] = L[i++];
-    }
-
-    while (j < n2) {
-        arr[k++] = R[j++];
-    }
-}
-
-// Merge Sort Function
-void mergeSort(vector<int>& arr, int left, int right) {
-    if (left < right) {
-        int mid = left + (right - left) / 2;
-
-        // Recursively sort the two halves
-        mergeSort(arr, left, mid);
-        mergeSort(arr, mid + 1, right);
-
-        // Merge the sorted halves
-        merge(arr, left, mid, right);
+        // If no swaps happened, array is already sorted
+        if (!swapped) break;
     }
 }
 
 int main() {
-    // Monthly sales figures in thousands
-    vector<int> sales = {120, 95, 140, 85, 170, 110, 105};
+    // Example array (e.g., product prices)
+    vector<int> arr = {150, 99, 120, 75, 180, 110};
 
-    cout << "Original Sales Data (in thousands):\n";
-    for (int val : sales) {
-        cout << val << " ";
+    cout << "Original array:\n";
+    for (int x : arr) {
+        cout << x << " ";
     }
     cout << "\n\n";
 
-    mergeSort(sales, 0, sales.size() - 1);
+    bubbleSort(arr);
 
-    cout << "Sorted Sales Data using Merge Sort:\n";
-    for (int val : sales) {
-        cout << val << " ";
+    cout << "Sorted array using Bubble Sort:\n";
+    for (int x : arr) {
+        cout << x << " ";
     }
     cout << endl;
 
