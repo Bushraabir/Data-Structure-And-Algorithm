@@ -1,138 +1,68 @@
-/*  
-Bubble Sort is a simple comparison-based sorting algorithm.
-It repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order.
-This process is repeated until the list is sorted.
+/* 
+Problem: Sort an Array Using Bubble Sort
+
+You are given a list of elements represented as an array.  
+Your task is to sort the array in ascending order using the Bubble Sort algorithm.  
+This problem helps you understand one of the simplest sorting techniques where  
+larger elements gradually "bubble up" to their correct positions.
 
 Working Principle:
-- Start from the beginning of the array.
-- Compare each pair of adjacent elements.
-- Swap them if the first element is greater than the second.
-- After each pass, the largest element "bubbles up" to its correct position at the end.
-- Repeat the process for the remaining unsorted part.
+- Repeatedly traverse the array.
+- Compare adjacent elements and swap them if they are in the wrong order.
+- After each pass, the largest unsorted element moves to the end.
+- Reduce the range of comparison after each iteration.
+- Stop early if no swaps occur (optimization).
 
 Time Complexity:
-    - Best Case: O(N) (When the array is already sorted, using an optimized version)
+    - Best Case (Already Sorted): O(N)  [with optimization]
     - Average Case: O(N^2)
-    - Worst Case: O(N^2)
+    - Worst Case (Reversely Sorted): O(N^2)
 
 Space Complexity:
-    - O(1) (In-place sorting)
+    - O(1) (in-place sorting)
 
-Stable Sort: Yes (Because equal elements are not swapped unnecessarily)
-Adaptive: Yes (If no swaps occur in a pass, the array is already sorted)
+Stable Sort: Yes
+Adaptive: Yes (with swapped flag optimization)
 */
 
 #include <iostream>
 #include <vector>
 using namespace std;
 
-// Bubble Sort Function
+// Iterative Bubble Sort Function
 void bubbleSort(vector<int>& arr) {
     int n = arr.size();
-    bool swapped;
 
-    // Traverse through all array elements
     for (int i = 0; i < n - 1; i++) {
-        swapped = false;
+        bool swapped = false;
 
-        // Last i elements are already sorted
-        for (int j = 0; j < n - 1 - i; j++) {
+        for (int j = 0; j < n - i - 1; j++) {
             if (arr[j] > arr[j + 1]) {
                 swap(arr[j], arr[j + 1]);
                 swapped = true;
             }
         }
 
-        // If no two elements were swapped by inner loop, then break
-        if (!swapped)
-            break;
+        // If no swaps happened, array is already sorted
+        if (!swapped) break;
     }
 }
 
 int main() {
-    vector<int> arr = {9, 5, 1, 4, 3};
+    // Example array (e.g., product prices)
+    vector<int> arr = {150, 99, 120, 75, 180, 110};
 
     cout << "Original array:\n";
-    for (int val : arr) {
-        cout << val << " ";
+    for (int x : arr) {
+        cout << x << " ";
     }
     cout << "\n\n";
 
     bubbleSort(arr);
 
     cout << "Sorted array using Bubble Sort:\n";
-    for (int val : arr) {
-        cout << val << " ";
-    }
-    cout << endl;
-
-    return 0;
-}
-/*  
-Bubble Sort is a simple comparison-based sorting algorithm.
-It repeatedly steps through the list, compares adjacent elements, and swaps them if they are in the wrong order.
-This process is repeated until the list is sorted.
-
-Working Principle:
-- Start from the beginning of the array.
-- Compare each pair of adjacent elements.
-- Swap them if the first element is greater than the second.
-- After each pass, the largest element "bubbles up" to its correct position at the end.
-- Repeat the process for the remaining unsorted part.
-
-Time Complexity:
-    - Best Case: O(N) (When the array is already sorted, using an optimized version)
-    - Average Case: O(N^2)
-    - Worst Case: O(N^2)
-
-Space Complexity:
-    - O(1) (In-place sorting)
-
-Stable Sort: Yes (Because equal elements are not swapped unnecessarily)
-Adaptive: Yes (If no swaps occur in a pass, the array is already sorted)
-*/
-
-#include <iostream>
-#include <vector>
-using namespace std;
-
-// Bubble Sort Function
-void bubbleSort(vector<int>& arr) {
-    int n = arr.size();
-    bool swapped;
-
-    // Traverse through all array elements
-    for (int i = 0; i < n - 1; i++) {
-        swapped = false;
-
-        // Last i elements are already sorted
-        for (int j = 0; j < n - 1 - i; j++) { // n-1-i as the array is being sorted from right to left
-            if (arr[j] > arr[j + 1]) {
-                swap(arr[j], arr[j + 1]);
-                swapped = true;
-            }
-        }
-
-        // If no two elements were swapped by inner loop, then break
-        if (!swapped)
-            break;
-    }
-}
-
-int main() {
-    vector<int> arr = {9, 5, 1, 4, 3};
-
-    cout << "Original array:\n";
-    for (int val : arr) {
-        cout << val << " ";
-    }
-    cout << "\n\n";
-
-    bubbleSort(arr);
-
-    cout << "Sorted array using Bubble Sort:\n";
-    for (int val : arr) {
-        cout << val << " ";
+    for (int x : arr) {
+        cout << x << " ";
     }
     cout << endl;
 
